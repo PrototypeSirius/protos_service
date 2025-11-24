@@ -1,6 +1,6 @@
 syntax = "proto3";
 package bot;
-option go_package = "tuzov.sso.v1;ssov1";
+option go_package = "sirius.bot.v1;bott1";
 
 service Bot {
     rpc Auth (AuthRequest) returns (AuthResponse);

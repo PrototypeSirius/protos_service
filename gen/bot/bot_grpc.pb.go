@@ -4,7 +4,7 @@
 // - protoc             v6.33.1
 // source: bot/bot.proto
 
-package ssov1
+package bott1
 
 import (
 	context "context"

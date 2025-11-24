@@ -4,7 +4,7 @@
 // 	protoc        v6.33.1
 // source: bot/bot.proto
 
-package ssov1
+package bott1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -737,7 +737,7 @@ const file_bot_bot_proto_rawDesc = "" +
 	"\x04Auth\x12\x10.bot.AuthRequest\x1a\x11.bot.AuthResponse\x12[\n" +
 	"\x14AccountReplenishment\x12 .bot.AccountReplenishmentRequest\x1a!.bot.AccountReplenishmentResponse\x12R\n" +
 	"\x11AccountWithdrawal\x12\x1d.bot.AccountWithdrawalRequest\x1a\x1e.bot.AccountWithdrawalResponse\x12@\n" +
-	"\vSendMessage\x12\x17.bot.SendMessageRequest\x1a\x18.bot.SendMessageResponseB\x14Z\x12tuzov.sso.v1;ssov1b\x06proto3"
+	"\vSendMessage\x12\x17.bot.SendMessageRequest\x1a\x18.bot.SendMessageResponseB\x15Z\x13sirius.bot.v1;bott1b\x06proto3"
 
 var (
 	file_bot_bot_proto_rawDescOnce sync.Once
