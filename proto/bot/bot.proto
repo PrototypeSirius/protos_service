@@ -1,0 +1,77 @@
+syntax = "proto3";
+package bot;
+option go_package = "tuzov.sso.v1;ssov1";
+
+service Bot {
+    rpc Auth (AuthRequest) returns (AuthResponse);
+    rpc AccountReplenishment (AccountReplenishmentRequest) returns (AccountReplenishmentResponse);
+    rpc AccountWithdrawal (AccountWithdrawalRequest) returns (AccountWithdrawalResponse);
+    rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+}
+
+message AuthRequest {
+    string AuthData = 1;
+}
+
+message AuthResponse {
+    int AuthDateRaw = 1;
+    int CanSendAfterRaw = 2;
+    Chat Chat = 3;
+    string ChatType = 4;
+    int64 ChatInstance = 5;
+    string Hash = 6;
+    string QueryID = 7;
+    User Receiver = 8;
+    string StartParam = 9;
+    User User = 10;
+}
+
+message Chat {
+    int64 ID = 1;
+    string Type = 2;
+    string Title = 3;
+    string PhotoURL = 4;
+    string Username = 5;
+}
+
+message User {
+    bool AddedToAttachmentMenu = 1;
+    bool AllowsWriteToPm = 2;
+    string FirstName = 3;
+    int64 ID = 4;
+    bool IsBot = 5;
+    bool IsPremium = 6;
+    string LastName = 7;
+    string Username = 8;
+    string LanguageCode = 9;
+    string PhotoURL = 10;
+}
+
+message AccountReplenishmentRequest {
+    string Amount = 1;
+    int64 UserID = 2;
+    int ReplenishmentRequestDateRaw = 3;
+}
+
+message AccountReplenishmentResponse {
+    string Message = 1;
+}
+
+message AccountWithdrawalRequest {
+    string Amount = 1;
+    int64 UserID = 2;
+    int WithdrawalRequestDateRaw = 3;
+}
+
+message AccountWithdrawalResponse {
+    string Message = 1;
+}
+
+message SendMessageRequest {
+    int64 UserID = 1;
+    string Message = 2;
+}
+
+message SendMessageResponse {
+    string Message = 1;
+}
