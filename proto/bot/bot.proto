@@ -14,8 +14,8 @@ message AuthRequest {
 }
 
 message AuthResponse {
-    int AuthDateRaw = 1;
-    int CanSendAfterRaw = 2;
+    int64 AuthDateRaw = 1;
+    int64 CanSendAfterRaw = 2;
     Chat Chat = 3;
     string ChatType = 4;
     int64 ChatInstance = 5;
@@ -50,7 +50,7 @@ message User {
 message AccountReplenishmentRequest {
     string Amount = 1;
     int64 UserID = 2;
-    int ReplenishmentRequestDateRaw = 3;
+    int64 ReplenishmentRequestDateRaw = 3;
 }
 
 message AccountReplenishmentResponse {
@@ -60,7 +60,7 @@ message AccountReplenishmentResponse {
 message AccountWithdrawalRequest {
     string Amount = 1;
     int64 UserID = 2;
-    int WithdrawalRequestDateRaw = 3;
+    int64 WithdrawalRequestDateRaw = 3;
 }
 
 message AccountWithdrawalResponse {
