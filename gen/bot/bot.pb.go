@@ -375,7 +375,7 @@ func (x *User) GetPhotoURL() string {
 
 type AccountReplenishmentRequest struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
-	Amount                      string                 `protobuf:"bytes,1,opt,name=Amount,proto3" json:"Amount,omitempty"`
+	Amount                      int64                  `protobuf:"varint,1,opt,name=Amount,proto3" json:"Amount,omitempty"`
 	UserID                      int64                  `protobuf:"varint,2,opt,name=UserID,proto3" json:"UserID,omitempty"`
 	ReplenishmentRequestDateRaw int64                  `protobuf:"varint,3,opt,name=ReplenishmentRequestDateRaw,proto3" json:"ReplenishmentRequestDateRaw,omitempty"`
 	unknownFields               protoimpl.UnknownFields
@@ -412,11 +412,11 @@ func (*AccountReplenishmentRequest) Descriptor() ([]byte, []int) {
 	return file_bot_bot_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *AccountReplenishmentRequest) GetAmount() string {
+func (x *AccountReplenishmentRequest) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
 	}
-	return ""
+	return 0
 }
 
 func (x *AccountReplenishmentRequest) GetUserID() int64 {
@@ -479,7 +479,7 @@ func (x *AccountReplenishmentResponse) GetMessage() string {
 
 type AccountWithdrawalRequest struct {
 	state                    protoimpl.MessageState `protogen:"open.v1"`
-	Amount                   string                 `protobuf:"bytes,1,opt,name=Amount,proto3" json:"Amount,omitempty"`
+	Amount                   int64                  `protobuf:"varint,1,opt,name=Amount,proto3" json:"Amount,omitempty"`
 	UserID                   int64                  `protobuf:"varint,2,opt,name=UserID,proto3" json:"UserID,omitempty"`
 	WithdrawalRequestDateRaw int64                  `protobuf:"varint,3,opt,name=WithdrawalRequestDateRaw,proto3" json:"WithdrawalRequestDateRaw,omitempty"`
 	unknownFields            protoimpl.UnknownFields
@@ -516,11 +516,11 @@ func (*AccountWithdrawalRequest) Descriptor() ([]byte, []int) {
 	return file_bot_bot_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *AccountWithdrawalRequest) GetAmount() string {
+func (x *AccountWithdrawalRequest) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
 	}
-	return ""
+	return 0
 }
 
 func (x *AccountWithdrawalRequest) GetUserID() int64 {
@@ -717,13 +717,13 @@ const file_bot_bot_proto_rawDesc = "" +
 	"\bPhotoURL\x18\n" +
 	" \x01(\tR\bPhotoURL\"\x8f\x01\n" +
 	"\x1bAccountReplenishmentRequest\x12\x16\n" +
-	"\x06Amount\x18\x01 \x01(\tR\x06Amount\x12\x16\n" +
+	"\x06Amount\x18\x01 \x01(\x03R\x06Amount\x12\x16\n" +
 	"\x06UserID\x18\x02 \x01(\x03R\x06UserID\x12@\n" +
 	"\x1bReplenishmentRequestDateRaw\x18\x03 \x01(\x03R\x1bReplenishmentRequestDateRaw\"8\n" +
 	"\x1cAccountReplenishmentResponse\x12\x18\n" +
 	"\aMessage\x18\x01 \x01(\tR\aMessage\"\x86\x01\n" +
 	"\x18AccountWithdrawalRequest\x12\x16\n" +
-	"\x06Amount\x18\x01 \x01(\tR\x06Amount\x12\x16\n" +
+	"\x06Amount\x18\x01 \x01(\x03R\x06Amount\x12\x16\n" +
 	"\x06UserID\x18\x02 \x01(\x03R\x06UserID\x12:\n" +
 	"\x18WithdrawalRequestDateRaw\x18\x03 \x01(\x03R\x18WithdrawalRequestDateRaw\"5\n" +
 	"\x19AccountWithdrawalResponse\x12\x18\n" +

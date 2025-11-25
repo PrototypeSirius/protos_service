@@ -48,7 +48,7 @@ message User {
 }
 
 message AccountReplenishmentRequest {
-    string Amount = 1;
+    int64 Amount = 1;
     int64 UserID = 2;
     int64 ReplenishmentRequestDateRaw = 3;
 }
@@ -58,7 +58,7 @@ message AccountReplenishmentResponse {
 }
 
 message AccountWithdrawalRequest {
-    string Amount = 1;
+    int64 Amount = 1;
     int64 UserID = 2;
     int64 WithdrawalRequestDateRaw = 3;
 }
