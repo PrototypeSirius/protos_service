@@ -1,0 +1,124 @@
+syntax = "proto3";
+package database;
+option go_package = "sirius.database.v1;database1";
+
+service Database {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc CheckUser (CheckUserRequest) returns (CheckUserResponse);
+    rpc CheckingBalanceSufficiency (CheckingBalanceSufficiencyRequest) returns (CheckingBalanceSufficiencyResponse);
+    rpc RequestUserStatistic (RequestUserStatisticRequest) returns (RequestUserStatisticResponse);
+    rpc RequestUserTransactionsHistory (RequestUserTransactionsHistoryRequest) returns (RequestUserTransactionsHistoryResponse);
+    rpc AddFinishStatus (AddFinishStatusRequest) returns (AddFinishStatusResponse);
+    rpc AddingUserPayment (AddingUserPaymentRequest) returns (AddingUserPaymentResponse);
+    rpc WithdrawalUserPayment (WithdrawalUserPaymentRequest) returns (WithdrawalUserPaymentResponse);
+}
+
+message CreateUserRequest {
+    int64 UserID = 1;
+}
+
+message CreateUserResponse {
+    string Error = 1;
+}
+
+message CheckUserRequest {
+    int64 UserID = 1;
+}
+
+message CheckUserResponse {
+    bool Exists = 1;
+    string Error = 2;
+}
+
+message CheckingBalanceSufficiencyRequest {
+    int64 UserID = 1;
+    int64 Amount = 2;
+}
+
+message CheckingBalanceSufficiencyResponse {
+    bool Sufficiency = 1;
+    string Error = 2;
+}
+
+message RequestUserStatisticRequest {
+    int64 UserID = 1;
+}
+
+message RequestUserStatisticResponse {
+    int64 Balance = 1;
+    int64 WithdrawalBalance = 2;
+    int64 NumderOfGames = 3;
+    int64 NumderOfWins = 4;
+    int64 NumderOfLosses = 5;
+    string Error = 6;
+}
+
+message RequestUserTransactionsHistoryRequest {
+    int64 UserID = 1;
+    int64 StartDate = 2;
+    int64 EndDate = 3;
+}
+
+message RequestUserTransactionsHistoryResponse {
+    repeated Transaction Transactions = 1;
+    string Error = 2;
+}
+
+message Transaction {
+    string OrderID = 1;
+    string Payload = 2;
+    int64 Amount = 3;
+    int64 Time = 4;
+    bool Ban = 5;
+    string Type = 6;
+    string BillType = 7;
+    string Currency = 8;
+}
+
+message AddFinishStatusRequest {
+    string GameID = 1;
+    repeated int64 WinnersID = 2;
+    int64 LoserID = 3;
+    int64 TimeStart = 5;
+    int64 TimeEnd = 6;
+    bool ExtraEndGame = 7;
+    bool PrivateGame = 8;
+    int64 NumberOfPlayers = 9;
+    int64 DeckSize = 10;
+    bool SpeedMod = 11;
+    bool ThrowMod = 12;
+    bool PassingMod = 13;
+    bool TricksMod = 14;
+    int64 Stake = 15;
+}
+
+message AddFinishStatusResponse {
+    string Error = 1;
+}
+
+message AddingUserPaymentRequest {
+    string CharcherID = 1;
+    int64 UserID = 2;
+    int64 ChatID = 3;
+    int64 MessageID = 4;
+    string Currency = 5;
+    int64 Amount = 6;
+    string OrderID = 7;
+    string Payload = 8;
+    int64 Time = 9;
+    bool BanStatus = 10;
+}
+
+message AddingUserPaymentResponse {
+    string Error = 1;
+}
+
+message WithdrawalUserPaymentRequest {
+    int64 UserID = 1;
+    int64 Amount = 2;
+}
+
+message WithdrawalUserPaymentResponse {
+    string Message = 1;
+    string Error = 2;
+}
