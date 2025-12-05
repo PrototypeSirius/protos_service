@@ -1,0 +1,27 @@
+syntax = "proto3";
+package cyberbot;
+option go_package = "sirius.cyberbot.v1;cyberbott";
+
+service Bot {
+    rpc Auth (AuthRequest) returns (AuthResponse);
+    rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+}
+
+message AuthRequest {
+    string AuthData = 1;
+}
+
+message AuthResponse {
+    bool Authorized = 1;
+    int64 UserID = 2;
+    string ErrorMes = 3;
+}
+
+message SendMessageRequest {
+    int64 UserID = 1;
+    string Message = 2;
+}
+
+message SendMessageResponse {
+    string ErrorMes = 1;
+}

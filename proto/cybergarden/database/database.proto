@@ -1,0 +1,70 @@
+syntax = "proto3";
+package cyberdatabase;
+option go_package = "sirius.cyberbot.v1;cyberdatabasee";
+
+service Database {
+    rpc AddUser (AddUserRequest) returns (AddUserResponse);
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+    rpc AddTransaction (AddTransactionRequest) returns (AddTransactionResponse);
+    rpc EditTransaction (EditTransactionRequest) returns (EditTransactionResponse);
+    rpc DeleteTransaction (DeleteTransactionRequest) returns (DeleteTransactionResponse);
+    rpc RequestUserTransactions (RequestUserTransactionsRequest) returns (RequestUserTransactionsResponse);
+}
+
+message AddUserRequest {
+    int64 UserID = 1;
+}
+
+message AddUserResponse {
+    string ErrorMes = 1;
+}
+
+message DeleteUserRequest {
+    int64 UserID = 1;
+}
+
+message DeleteUserResponse {
+    string ErrorMes = 1;
+}
+
+message AddTransactionRequest {
+    Transaction Transaction = 1;
+}
+
+message AddTransactionResponse {
+    string ErrorMes = 1;
+}
+
+message EditTransactionRequest {
+    Transaction Transaction = 1;
+}
+
+message EditTransactionResponse {
+    string ErrorMes = 1;
+}
+
+message DeleteTransactionRequest {
+    int64 ID = 1;
+}
+
+message DeleteTransactionResponse {
+    string ErrorMes = 1;
+}
+
+message RequestUserTransactionsRequest {
+    int64 UserID = 1;
+}
+
+message RequestUserTransactionsResponse {
+    repeated Transaction Transactions = 1;
+    string ErrorMes = 2;
+}
+
+message Transaction {
+    int64 ID = 1;
+    int64 Date = 2;
+    string Kategoria = 3;
+    string Type = 4;
+    int64 Amount = 5;
+    string Description = 6;
+}
