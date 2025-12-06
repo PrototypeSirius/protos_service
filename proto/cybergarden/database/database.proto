@@ -37,7 +37,8 @@ message AddTransactionResponse {
 }
 
 message EditTransactionRequest {
-    Transaction Transaction = 1;
+    int64 ID = 1;
+    Transaction Transaction = 2;
 }
 
 message EditTransactionResponse {

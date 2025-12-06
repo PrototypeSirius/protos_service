@@ -295,7 +295,8 @@ func (x *AddTransactionResponse) GetErrorMes() string {
 
 type EditTransactionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Transaction   *Transaction           `protobuf:"bytes,1,opt,name=Transaction,proto3" json:"Transaction,omitempty"`
+	ID            int64                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Transaction   *Transaction           `protobuf:"bytes,2,opt,name=Transaction,proto3" json:"Transaction,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -328,6 +329,13 @@ func (x *EditTransactionRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use EditTransactionRequest.ProtoReflect.Descriptor instead.
 func (*EditTransactionRequest) Descriptor() ([]byte, []int) {
 	return file_cybergarden_database_database_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *EditTransactionRequest) GetID() int64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
 }
 
 func (x *EditTransactionRequest) GetTransaction() *Transaction {
@@ -666,9 +674,10 @@ const file_cybergarden_database_database_proto_rawDesc = "" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12<\n" +
 	"\vTransaction\x18\x02 \x01(\v2\x1a.cyberdatabase.TransactionR\vTransaction\"4\n" +
 	"\x16AddTransactionResponse\x12\x1a\n" +
-	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"V\n" +
-	"\x16EditTransactionRequest\x12<\n" +
-	"\vTransaction\x18\x01 \x01(\v2\x1a.cyberdatabase.TransactionR\vTransaction\"5\n" +
+	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"f\n" +
+	"\x16EditTransactionRequest\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x03R\x02ID\x12<\n" +
+	"\vTransaction\x18\x02 \x01(\v2\x1a.cyberdatabase.TransactionR\vTransaction\"5\n" +
 	"\x17EditTransactionResponse\x12\x1a\n" +
 	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"*\n" +
 	"\x18DeleteTransactionRequest\x12\x0e\n" +
