@@ -295,7 +295,7 @@ func (x *AddTransactionResponse) GetErrorMes() string {
 
 type EditTransactionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ID            int64                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	UserID        int64                  `protobuf:"varint,1,opt,name=UserID,proto3" json:"UserID,omitempty"`
 	Transaction   *Transaction           `protobuf:"bytes,2,opt,name=Transaction,proto3" json:"Transaction,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -331,9 +331,9 @@ func (*EditTransactionRequest) Descriptor() ([]byte, []int) {
 	return file_cybergarden_database_database_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *EditTransactionRequest) GetID() int64 {
+func (x *EditTransactionRequest) GetUserID() int64 {
 	if x != nil {
-		return x.ID
+		return x.UserID
 	}
 	return 0
 }
@@ -391,7 +391,8 @@ func (x *EditTransactionResponse) GetErrorMes() string {
 
 type DeleteTransactionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ID            int64                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	UserID        int64                  `protobuf:"varint,1,opt,name=UserID,proto3" json:"UserID,omitempty"`
+	ID            int64                  `protobuf:"varint,2,opt,name=ID,proto3" json:"ID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -424,6 +425,13 @@ func (x *DeleteTransactionRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use DeleteTransactionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTransactionRequest) Descriptor() ([]byte, []int) {
 	return file_cybergarden_database_database_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *DeleteTransactionRequest) GetUserID() int64 {
+	if x != nil {
+		return x.UserID
+	}
+	return 0
 }
 
 func (x *DeleteTransactionRequest) GetID() int64 {
@@ -674,14 +682,15 @@ const file_cybergarden_database_database_proto_rawDesc = "" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12<\n" +
 	"\vTransaction\x18\x02 \x01(\v2\x1a.cyberdatabase.TransactionR\vTransaction\"4\n" +
 	"\x16AddTransactionResponse\x12\x1a\n" +
-	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"f\n" +
-	"\x16EditTransactionRequest\x12\x0e\n" +
-	"\x02ID\x18\x01 \x01(\x03R\x02ID\x12<\n" +
+	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"n\n" +
+	"\x16EditTransactionRequest\x12\x16\n" +
+	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12<\n" +
 	"\vTransaction\x18\x02 \x01(\v2\x1a.cyberdatabase.TransactionR\vTransaction\"5\n" +
 	"\x17EditTransactionResponse\x12\x1a\n" +
-	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"*\n" +
-	"\x18DeleteTransactionRequest\x12\x0e\n" +
-	"\x02ID\x18\x01 \x01(\x03R\x02ID\"7\n" +
+	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"B\n" +
+	"\x18DeleteTransactionRequest\x12\x16\n" +
+	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x0e\n" +
+	"\x02ID\x18\x02 \x01(\x03R\x02ID\"7\n" +
 	"\x19DeleteTransactionResponse\x12\x1a\n" +
 	"\bErrorMes\x18\x01 \x01(\tR\bErrorMes\"8\n" +
 	"\x1eRequestUserTransactionsRequest\x12\x16\n" +

@@ -37,7 +37,7 @@ message AddTransactionResponse {
 }
 
 message EditTransactionRequest {
-    int64 ID = 1;
+    int64 UserID = 1;
     Transaction Transaction = 2;
 }
 
@@ -46,7 +46,8 @@ message EditTransactionResponse {
 }
 
 message DeleteTransactionRequest {
-    int64 ID = 1;
+    int64 UserID = 1;
+    int64 ID = 2;
 }
 
 message DeleteTransactionResponse {
