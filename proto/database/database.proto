@@ -59,12 +59,16 @@ message RequestUserTransactionsHistoryRequest {
 }
 
 message RequestUserTransactionsHistoryResponse {
+    repeated Transfer Transfers = 1;
+    string Error = 2;
+}
+
+message Transfer {
     string TransferID = 1;
     int64 Amount = 2;
     bool Accrualed = 3;
     int64 Date = 4;
     string Currency = 5;
-    string Error = 6;
 }
 
 message AddFinishStatusRequest {
