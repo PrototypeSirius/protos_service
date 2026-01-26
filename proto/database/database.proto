@@ -89,16 +89,21 @@ message AddFinishStatusResponse {
 }
 
 message AddingUserPaymentRequest {
-    string CharcherID = 1;
-    int64 UserID = 2;
-    int64 ChatID = 3;
-    int64 MessageID = 4;
-    string Currency = 5;
-    int64 Amount = 6;
-    string OrderID = 7;
-    string Payload = 8;
-    int64 Time = 9;
-    bool BanStatus = 10;
+    string UniqueID = 1;
+    string TelegramPaymentChargeID = 2;
+    int64 UserTelegramID = 3;
+    int64 ChatID = 4;
+    int64 MessageID = 5;
+    string Currency = 6;
+    int64 Amount = 7;
+    string OrderID = 8;
+    string Payload = 9;
+    int64 TimeTransfered = 10;
+    int64 Time = 11;
+    bool Ban = 12;
+    string BillType = 13;
+    string CloseType = 14;
+    repeated string TransactionChainID = 15;
 }
 
 message AddingUserPaymentResponse {

@@ -778,19 +778,24 @@ func (x *AddFinishStatusResponse) GetSuccess() bool {
 }
 
 type AddingUserPaymentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CharcherID    string                 `protobuf:"bytes,1,opt,name=CharcherID,proto3" json:"CharcherID,omitempty"`
-	UserID        int64                  `protobuf:"varint,2,opt,name=UserID,proto3" json:"UserID,omitempty"`
-	ChatID        int64                  `protobuf:"varint,3,opt,name=ChatID,proto3" json:"ChatID,omitempty"`
-	MessageID     int64                  `protobuf:"varint,4,opt,name=MessageID,proto3" json:"MessageID,omitempty"`
-	Currency      string                 `protobuf:"bytes,5,opt,name=Currency,proto3" json:"Currency,omitempty"`
-	Amount        int64                  `protobuf:"varint,6,opt,name=Amount,proto3" json:"Amount,omitempty"`
-	OrderID       string                 `protobuf:"bytes,7,opt,name=OrderID,proto3" json:"OrderID,omitempty"`
-	Payload       string                 `protobuf:"bytes,8,opt,name=Payload,proto3" json:"Payload,omitempty"`
-	Time          int64                  `protobuf:"varint,9,opt,name=Time,proto3" json:"Time,omitempty"`
-	BanStatus     bool                   `protobuf:"varint,10,opt,name=BanStatus,proto3" json:"BanStatus,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"open.v1"`
+	UniqueID                string                 `protobuf:"bytes,1,opt,name=UniqueID,proto3" json:"UniqueID,omitempty"`
+	TelegramPaymentChargeID string                 `protobuf:"bytes,2,opt,name=TelegramPaymentChargeID,proto3" json:"TelegramPaymentChargeID,omitempty"`
+	UserTelegramID          int64                  `protobuf:"varint,3,opt,name=UserTelegramID,proto3" json:"UserTelegramID,omitempty"`
+	ChatID                  int64                  `protobuf:"varint,4,opt,name=ChatID,proto3" json:"ChatID,omitempty"`
+	MessageID               int64                  `protobuf:"varint,5,opt,name=MessageID,proto3" json:"MessageID,omitempty"`
+	Currency                string                 `protobuf:"bytes,6,opt,name=Currency,proto3" json:"Currency,omitempty"`
+	Amount                  int64                  `protobuf:"varint,7,opt,name=Amount,proto3" json:"Amount,omitempty"`
+	OrderID                 string                 `protobuf:"bytes,8,opt,name=OrderID,proto3" json:"OrderID,omitempty"`
+	Payload                 string                 `protobuf:"bytes,9,opt,name=Payload,proto3" json:"Payload,omitempty"`
+	TimeTransfered          int64                  `protobuf:"varint,10,opt,name=TimeTransfered,proto3" json:"TimeTransfered,omitempty"`
+	Time                    int64                  `protobuf:"varint,11,opt,name=Time,proto3" json:"Time,omitempty"`
+	Ban                     bool                   `protobuf:"varint,12,opt,name=Ban,proto3" json:"Ban,omitempty"`
+	BillType                string                 `protobuf:"bytes,13,opt,name=BillType,proto3" json:"BillType,omitempty"`
+	CloseType               string                 `protobuf:"bytes,14,opt,name=CloseType,proto3" json:"CloseType,omitempty"`
+	TransactionChainID      []string               `protobuf:"bytes,15,rep,name=TransactionChainID,proto3" json:"TransactionChainID,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *AddingUserPaymentRequest) Reset() {
@@ -823,16 +828,23 @@ func (*AddingUserPaymentRequest) Descriptor() ([]byte, []int) {
 	return file_database_database_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *AddingUserPaymentRequest) GetCharcherID() string {
+func (x *AddingUserPaymentRequest) GetUniqueID() string {
 	if x != nil {
-		return x.CharcherID
+		return x.UniqueID
 	}
 	return ""
 }
 
-func (x *AddingUserPaymentRequest) GetUserID() int64 {
+func (x *AddingUserPaymentRequest) GetTelegramPaymentChargeID() string {
 	if x != nil {
-		return x.UserID
+		return x.TelegramPaymentChargeID
+	}
+	return ""
+}
+
+func (x *AddingUserPaymentRequest) GetUserTelegramID() int64 {
+	if x != nil {
+		return x.UserTelegramID
 	}
 	return 0
 }
@@ -879,6 +891,13 @@ func (x *AddingUserPaymentRequest) GetPayload() string {
 	return ""
 }
 
+func (x *AddingUserPaymentRequest) GetTimeTransfered() int64 {
+	if x != nil {
+		return x.TimeTransfered
+	}
+	return 0
+}
+
 func (x *AddingUserPaymentRequest) GetTime() int64 {
 	if x != nil {
 		return x.Time
@@ -886,11 +905,32 @@ func (x *AddingUserPaymentRequest) GetTime() int64 {
 	return 0
 }
 
-func (x *AddingUserPaymentRequest) GetBanStatus() bool {
+func (x *AddingUserPaymentRequest) GetBan() bool {
 	if x != nil {
-		return x.BanStatus
+		return x.Ban
 	}
 	return false
+}
+
+func (x *AddingUserPaymentRequest) GetBillType() string {
+	if x != nil {
+		return x.BillType
+	}
+	return ""
+}
+
+func (x *AddingUserPaymentRequest) GetCloseType() string {
+	if x != nil {
+		return x.CloseType
+	}
+	return ""
+}
+
+func (x *AddingUserPaymentRequest) GetTransactionChainID() []string {
+	if x != nil {
+		return x.TransactionChainID
+	}
+	return nil
 }
 
 type AddingUserPaymentResponse struct {
@@ -1091,21 +1131,24 @@ const file_database_database_proto_rawDesc = "" +
 	"\tTricksMod\x18\x0e \x01(\bR\tTricksMod\x12\x14\n" +
 	"\x05Stake\x18\x0f \x01(\x03R\x05Stake\"3\n" +
 	"\x17AddFinishStatusResponse\x12\x18\n" +
-	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"\xa2\x02\n" +
-	"\x18AddingUserPaymentRequest\x12\x1e\n" +
-	"\n" +
-	"CharcherID\x18\x01 \x01(\tR\n" +
-	"CharcherID\x12\x16\n" +
-	"\x06UserID\x18\x02 \x01(\x03R\x06UserID\x12\x16\n" +
-	"\x06ChatID\x18\x03 \x01(\x03R\x06ChatID\x12\x1c\n" +
-	"\tMessageID\x18\x04 \x01(\x03R\tMessageID\x12\x1a\n" +
-	"\bCurrency\x18\x05 \x01(\tR\bCurrency\x12\x16\n" +
-	"\x06Amount\x18\x06 \x01(\x03R\x06Amount\x12\x18\n" +
-	"\aOrderID\x18\a \x01(\tR\aOrderID\x12\x18\n" +
-	"\aPayload\x18\b \x01(\tR\aPayload\x12\x12\n" +
-	"\x04Time\x18\t \x01(\x03R\x04Time\x12\x1c\n" +
-	"\tBanStatus\x18\n" +
-	" \x01(\bR\tBanStatus\"5\n" +
+	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"\xee\x03\n" +
+	"\x18AddingUserPaymentRequest\x12\x1a\n" +
+	"\bUniqueID\x18\x01 \x01(\tR\bUniqueID\x128\n" +
+	"\x17TelegramPaymentChargeID\x18\x02 \x01(\tR\x17TelegramPaymentChargeID\x12&\n" +
+	"\x0eUserTelegramID\x18\x03 \x01(\x03R\x0eUserTelegramID\x12\x16\n" +
+	"\x06ChatID\x18\x04 \x01(\x03R\x06ChatID\x12\x1c\n" +
+	"\tMessageID\x18\x05 \x01(\x03R\tMessageID\x12\x1a\n" +
+	"\bCurrency\x18\x06 \x01(\tR\bCurrency\x12\x16\n" +
+	"\x06Amount\x18\a \x01(\x03R\x06Amount\x12\x18\n" +
+	"\aOrderID\x18\b \x01(\tR\aOrderID\x12\x18\n" +
+	"\aPayload\x18\t \x01(\tR\aPayload\x12&\n" +
+	"\x0eTimeTransfered\x18\n" +
+	" \x01(\x03R\x0eTimeTransfered\x12\x12\n" +
+	"\x04Time\x18\v \x01(\x03R\x04Time\x12\x10\n" +
+	"\x03Ban\x18\f \x01(\bR\x03Ban\x12\x1a\n" +
+	"\bBillType\x18\r \x01(\tR\bBillType\x12\x1c\n" +
+	"\tCloseType\x18\x0e \x01(\tR\tCloseType\x12.\n" +
+	"\x12TransactionChainID\x18\x0f \x03(\tR\x12TransactionChainID\"5\n" +
 	"\x19AddingUserPaymentResponse\x12\x18\n" +
 	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"N\n" +
 	"\x1cWithdrawalUserPaymentRequest\x12\x16\n" +
