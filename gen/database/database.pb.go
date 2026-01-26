@@ -341,8 +341,8 @@ type RequestUserStatisticResponse struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Balance           int64                  `protobuf:"varint,1,opt,name=Balance,proto3" json:"Balance,omitempty"`
 	WithdrawalBalance int64                  `protobuf:"varint,2,opt,name=WithdrawalBalance,proto3" json:"WithdrawalBalance,omitempty"`
-	NumderOfGames     int64                  `protobuf:"varint,3,opt,name=NumderOfGames,proto3" json:"NumderOfGames,omitempty"`
-	NumderOfLosses    int64                  `protobuf:"varint,4,opt,name=NumderOfLosses,proto3" json:"NumderOfLosses,omitempty"`
+	NumberOfGames     int64                  `protobuf:"varint,3,opt,name=NumberOfGames,proto3" json:"NumberOfGames,omitempty"`
+	NumberOfLosses    int64                  `protobuf:"varint,4,opt,name=NumberOfLosses,proto3" json:"NumberOfLosses,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -391,16 +391,16 @@ func (x *RequestUserStatisticResponse) GetWithdrawalBalance() int64 {
 	return 0
 }
 
-func (x *RequestUserStatisticResponse) GetNumderOfGames() int64 {
+func (x *RequestUserStatisticResponse) GetNumberOfGames() int64 {
 	if x != nil {
-		return x.NumderOfGames
+		return x.NumberOfGames
 	}
 	return 0
 }
 
-func (x *RequestUserStatisticResponse) GetNumderOfLosses() int64 {
+func (x *RequestUserStatisticResponse) GetNumberOfLosses() int64 {
 	if x != nil {
-		return x.NumderOfLosses
+		return x.NumberOfLosses
 	}
 	return 0
 }
@@ -1056,8 +1056,8 @@ const file_database_database_proto_rawDesc = "" +
 	"\x1cRequestUserStatisticResponse\x12\x18\n" +
 	"\aBalance\x18\x01 \x01(\x03R\aBalance\x12,\n" +
 	"\x11WithdrawalBalance\x18\x02 \x01(\x03R\x11WithdrawalBalance\x12$\n" +
-	"\rNumderOfGames\x18\x03 \x01(\x03R\rNumderOfGames\x12&\n" +
-	"\x0eNumderOfLosses\x18\x04 \x01(\x03R\x0eNumderOfLosses\"w\n" +
+	"\rNumberOfGames\x18\x03 \x01(\x03R\rNumberOfGames\x12&\n" +
+	"\x0eNumberOfLosses\x18\x04 \x01(\x03R\x0eNumberOfLosses\"w\n" +
 	"%RequestUserTransactionsHistoryRequest\x12\x16\n" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x1c\n" +
 	"\tStartDate\x18\x02 \x01(\x03R\tStartDate\x12\x18\n" +

@@ -45,8 +45,8 @@ message RequestUserStatisticRequest {
 message RequestUserStatisticResponse {
     int64 Balance = 1;
     int64 WithdrawalBalance = 2;
-    int64 NumderOfGames = 3;
-    int64 NumderOfLosses = 4;
+    int64 NumberOfGames = 3;
+    int64 NumberOfLosses = 4;
 }
 
 message RequestUserTransactionsHistoryRequest {
