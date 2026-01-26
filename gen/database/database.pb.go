@@ -67,7 +67,7 @@ func (x *CreateUserRequest) GetUserID() int64 {
 
 type CreateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Error         string                 `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=Success,proto3" json:"Success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -102,11 +102,11 @@ func (*CreateUserResponse) Descriptor() ([]byte, []int) {
 	return file_database_database_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateUserResponse) GetError() string {
+func (x *CreateUserResponse) GetSuccess() bool {
 	if x != nil {
-		return x.Error
+		return x.Success
 	}
-	return ""
+	return false
 }
 
 type CheckUserRequest struct {
@@ -156,7 +156,6 @@ func (x *CheckUserRequest) GetUserID() int64 {
 type CheckUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Exists        bool                   `protobuf:"varint,1,opt,name=Exists,proto3" json:"Exists,omitempty"`
-	Error         string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -196,13 +195,6 @@ func (x *CheckUserResponse) GetExists() bool {
 		return x.Exists
 	}
 	return false
-}
-
-func (x *CheckUserResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
 }
 
 type CheckingBalanceSufficiencyRequest struct {
@@ -260,7 +252,6 @@ func (x *CheckingBalanceSufficiencyRequest) GetAmount() int64 {
 type CheckingBalanceSufficiencyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sufficiency   bool                   `protobuf:"varint,1,opt,name=Sufficiency,proto3" json:"Sufficiency,omitempty"`
-	Error         string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -300,13 +291,6 @@ func (x *CheckingBalanceSufficiencyResponse) GetSufficiency() bool {
 		return x.Sufficiency
 	}
 	return false
-}
-
-func (x *CheckingBalanceSufficiencyResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
 }
 
 type RequestUserStatisticRequest struct {
@@ -359,7 +343,6 @@ type RequestUserStatisticResponse struct {
 	WithdrawalBalance int64                  `protobuf:"varint,2,opt,name=WithdrawalBalance,proto3" json:"WithdrawalBalance,omitempty"`
 	NumderOfGames     int64                  `protobuf:"varint,3,opt,name=NumderOfGames,proto3" json:"NumderOfGames,omitempty"`
 	NumderOfLosses    int64                  `protobuf:"varint,4,opt,name=NumderOfLosses,proto3" json:"NumderOfLosses,omitempty"`
-	Error             string                 `protobuf:"bytes,5,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -420,13 +403,6 @@ func (x *RequestUserStatisticResponse) GetNumderOfLosses() int64 {
 		return x.NumderOfLosses
 	}
 	return 0
-}
-
-func (x *RequestUserStatisticResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
 }
 
 type RequestUserTransactionsHistoryRequest struct {
@@ -492,7 +468,6 @@ func (x *RequestUserTransactionsHistoryRequest) GetEndDate() int64 {
 type RequestUserTransactionsHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Transfers     []*Transfer            `protobuf:"bytes,1,rep,name=Transfers,proto3" json:"Transfers,omitempty"`
-	Error         string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -532,13 +507,6 @@ func (x *RequestUserTransactionsHistoryResponse) GetTransfers() []*Transfer {
 		return x.Transfers
 	}
 	return nil
-}
-
-func (x *RequestUserTransactionsHistoryResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
 }
 
 type Transfer struct {
@@ -767,7 +735,7 @@ func (x *AddFinishStatusRequest) GetStake() int64 {
 
 type AddFinishStatusResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Error         string                 `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=Success,proto3" json:"Success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -802,11 +770,11 @@ func (*AddFinishStatusResponse) Descriptor() ([]byte, []int) {
 	return file_database_database_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *AddFinishStatusResponse) GetError() string {
+func (x *AddFinishStatusResponse) GetSuccess() bool {
 	if x != nil {
-		return x.Error
+		return x.Success
 	}
-	return ""
+	return false
 }
 
 type AddingUserPaymentRequest struct {
@@ -927,7 +895,7 @@ func (x *AddingUserPaymentRequest) GetBanStatus() bool {
 
 type AddingUserPaymentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Error         string                 `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=Success,proto3" json:"Success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -962,11 +930,11 @@ func (*AddingUserPaymentResponse) Descriptor() ([]byte, []int) {
 	return file_database_database_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *AddingUserPaymentResponse) GetError() string {
+func (x *AddingUserPaymentResponse) GetSuccess() bool {
 	if x != nil {
-		return x.Error
+		return x.Success
 	}
-	return ""
+	return false
 }
 
 type WithdrawalUserPaymentRequest struct {
@@ -1024,7 +992,6 @@ func (x *WithdrawalUserPaymentRequest) GetAmount() int64 {
 type WithdrawalUserPaymentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=Message,proto3" json:"Message,omitempty"`
-	Error         string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1066,48 +1033,37 @@ func (x *WithdrawalUserPaymentResponse) GetMessage() string {
 	return ""
 }
 
-func (x *WithdrawalUserPaymentResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
 var File_database_database_proto protoreflect.FileDescriptor
 
 const file_database_database_proto_rawDesc = "" +
 	"\n" +
 	"\x17database/database.proto\x12\bdatabase\"+\n" +
 	"\x11CreateUserRequest\x12\x16\n" +
-	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"*\n" +
-	"\x12CreateUserResponse\x12\x14\n" +
-	"\x05Error\x18\x01 \x01(\tR\x05Error\"*\n" +
+	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\".\n" +
+	"\x12CreateUserResponse\x12\x18\n" +
+	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"*\n" +
 	"\x10CheckUserRequest\x12\x16\n" +
-	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"A\n" +
+	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"+\n" +
 	"\x11CheckUserResponse\x12\x16\n" +
-	"\x06Exists\x18\x01 \x01(\bR\x06Exists\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error\"S\n" +
+	"\x06Exists\x18\x01 \x01(\bR\x06Exists\"S\n" +
 	"!CheckingBalanceSufficiencyRequest\x12\x16\n" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x16\n" +
-	"\x06Amount\x18\x02 \x01(\x03R\x06Amount\"\\\n" +
+	"\x06Amount\x18\x02 \x01(\x03R\x06Amount\"F\n" +
 	"\"CheckingBalanceSufficiencyResponse\x12 \n" +
-	"\vSufficiency\x18\x01 \x01(\bR\vSufficiency\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error\"5\n" +
+	"\vSufficiency\x18\x01 \x01(\bR\vSufficiency\"5\n" +
 	"\x1bRequestUserStatisticRequest\x12\x16\n" +
-	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"\xca\x01\n" +
+	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"\xb4\x01\n" +
 	"\x1cRequestUserStatisticResponse\x12\x18\n" +
 	"\aBalance\x18\x01 \x01(\x03R\aBalance\x12,\n" +
 	"\x11WithdrawalBalance\x18\x02 \x01(\x03R\x11WithdrawalBalance\x12$\n" +
 	"\rNumderOfGames\x18\x03 \x01(\x03R\rNumderOfGames\x12&\n" +
-	"\x0eNumderOfLosses\x18\x04 \x01(\x03R\x0eNumderOfLosses\x12\x14\n" +
-	"\x05Error\x18\x05 \x01(\tR\x05Error\"w\n" +
+	"\x0eNumderOfLosses\x18\x04 \x01(\x03R\x0eNumderOfLosses\"w\n" +
 	"%RequestUserTransactionsHistoryRequest\x12\x16\n" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x1c\n" +
 	"\tStartDate\x18\x02 \x01(\x03R\tStartDate\x12\x18\n" +
-	"\aEndDate\x18\x03 \x01(\x03R\aEndDate\"p\n" +
+	"\aEndDate\x18\x03 \x01(\x03R\aEndDate\"Z\n" +
 	"&RequestUserTransactionsHistoryResponse\x120\n" +
-	"\tTransfers\x18\x01 \x03(\v2\x12.database.TransferR\tTransfers\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error\"\x90\x01\n" +
+	"\tTransfers\x18\x01 \x03(\v2\x12.database.TransferR\tTransfers\"\x90\x01\n" +
 	"\bTransfer\x12\x1e\n" +
 	"\n" +
 	"TransferID\x18\x01 \x01(\tR\n" +
@@ -1133,9 +1089,9 @@ const file_database_database_proto_rawDesc = "" +
 	"PassingMod\x18\r \x01(\bR\n" +
 	"PassingMod\x12\x1c\n" +
 	"\tTricksMod\x18\x0e \x01(\bR\tTricksMod\x12\x14\n" +
-	"\x05Stake\x18\x0f \x01(\x03R\x05Stake\"/\n" +
-	"\x17AddFinishStatusResponse\x12\x14\n" +
-	"\x05Error\x18\x01 \x01(\tR\x05Error\"\xa2\x02\n" +
+	"\x05Stake\x18\x0f \x01(\x03R\x05Stake\"3\n" +
+	"\x17AddFinishStatusResponse\x12\x18\n" +
+	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"\xa2\x02\n" +
 	"\x18AddingUserPaymentRequest\x12\x1e\n" +
 	"\n" +
 	"CharcherID\x18\x01 \x01(\tR\n" +
@@ -1149,15 +1105,14 @@ const file_database_database_proto_rawDesc = "" +
 	"\aPayload\x18\b \x01(\tR\aPayload\x12\x12\n" +
 	"\x04Time\x18\t \x01(\x03R\x04Time\x12\x1c\n" +
 	"\tBanStatus\x18\n" +
-	" \x01(\bR\tBanStatus\"1\n" +
-	"\x19AddingUserPaymentResponse\x12\x14\n" +
-	"\x05Error\x18\x01 \x01(\tR\x05Error\"N\n" +
+	" \x01(\bR\tBanStatus\"5\n" +
+	"\x19AddingUserPaymentResponse\x12\x18\n" +
+	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"N\n" +
 	"\x1cWithdrawalUserPaymentRequest\x12\x16\n" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x16\n" +
-	"\x06Amount\x18\x02 \x01(\x03R\x06Amount\"O\n" +
+	"\x06Amount\x18\x02 \x01(\x03R\x06Amount\"9\n" +
 	"\x1dWithdrawalUserPaymentResponse\x12\x18\n" +
-	"\aMessage\x18\x01 \x01(\tR\aMessage\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error2\x9f\x06\n" +
+	"\aMessage\x18\x01 \x01(\tR\aMessage2\x9f\x06\n" +
 	"\bDatabase\x12G\n" +
 	"\n" +
 	"CreateUser\x12\x1b.database.CreateUserRequest\x1a\x1c.database.CreateUserResponse\x12D\n" +

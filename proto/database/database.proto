@@ -18,7 +18,7 @@ message CreateUserRequest {
 }
 
 message CreateUserResponse {
-    string Error = 1;
+    bool Success = 1;
 }
 
 message CheckUserRequest {
@@ -27,7 +27,6 @@ message CheckUserRequest {
 
 message CheckUserResponse {
     bool Exists = 1;
-    string Error = 2;
 }
 
 message CheckingBalanceSufficiencyRequest {
@@ -37,7 +36,6 @@ message CheckingBalanceSufficiencyRequest {
 
 message CheckingBalanceSufficiencyResponse {
     bool Sufficiency = 1;
-    string Error = 2;
 }
 
 message RequestUserStatisticRequest {
@@ -49,7 +47,6 @@ message RequestUserStatisticResponse {
     int64 WithdrawalBalance = 2;
     int64 NumderOfGames = 3;
     int64 NumderOfLosses = 4;
-    string Error = 5;
 }
 
 message RequestUserTransactionsHistoryRequest {
@@ -60,7 +57,6 @@ message RequestUserTransactionsHistoryRequest {
 
 message RequestUserTransactionsHistoryResponse {
     repeated Transfer Transfers = 1;
-    string Error = 2;
 }
 
 message Transfer {
@@ -89,7 +85,7 @@ message AddFinishStatusRequest {
 }
 
 message AddFinishStatusResponse {
-    string Error = 1;
+    bool Success = 1;
 }
 
 message AddingUserPaymentRequest {
@@ -106,7 +102,7 @@ message AddingUserPaymentRequest {
 }
 
 message AddingUserPaymentResponse {
-    string Error = 1;
+    bool Success = 1;
 }
 
 message WithdrawalUserPaymentRequest {
@@ -116,5 +112,4 @@ message WithdrawalUserPaymentRequest {
 
 message WithdrawalUserPaymentResponse {
     string Message = 1;
-    string Error = 2;
 }
