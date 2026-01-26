@@ -48,9 +48,8 @@ message RequestUserStatisticResponse {
     int64 Balance = 1;
     int64 WithdrawalBalance = 2;
     int64 NumderOfGames = 3;
-    int64 NumderOfWins = 4;
-    int64 NumderOfLosses = 5;
-    string Error = 6;
+    int64 NumderOfLosses = 4;
+    string Error = 5;
 }
 
 message RequestUserTransactionsHistoryRequest {
@@ -60,19 +59,12 @@ message RequestUserTransactionsHistoryRequest {
 }
 
 message RequestUserTransactionsHistoryResponse {
-    repeated Transaction Transactions = 1;
-    string Error = 2;
-}
-
-message Transaction {
-    string OrderID = 1;
-    string Payload = 2;
-    int64 Amount = 3;
-    int64 Time = 4;
-    bool Ban = 5;
-    string Type = 6;
-    string BillType = 7;
-    string Currency = 8;
+    string TransferID = 1;
+    int64 Amount = 2;
+    bool Accrualed = 3;
+    int64 Date = 4;
+    string Currency = 5;
+    string Error = 6;
 }
 
 message AddFinishStatusRequest {

@@ -358,9 +358,8 @@ type RequestUserStatisticResponse struct {
 	Balance           int64                  `protobuf:"varint,1,opt,name=Balance,proto3" json:"Balance,omitempty"`
 	WithdrawalBalance int64                  `protobuf:"varint,2,opt,name=WithdrawalBalance,proto3" json:"WithdrawalBalance,omitempty"`
 	NumderOfGames     int64                  `protobuf:"varint,3,opt,name=NumderOfGames,proto3" json:"NumderOfGames,omitempty"`
-	NumderOfWins      int64                  `protobuf:"varint,4,opt,name=NumderOfWins,proto3" json:"NumderOfWins,omitempty"`
-	NumderOfLosses    int64                  `protobuf:"varint,5,opt,name=NumderOfLosses,proto3" json:"NumderOfLosses,omitempty"`
-	Error             string                 `protobuf:"bytes,6,opt,name=Error,proto3" json:"Error,omitempty"`
+	NumderOfLosses    int64                  `protobuf:"varint,4,opt,name=NumderOfLosses,proto3" json:"NumderOfLosses,omitempty"`
+	Error             string                 `protobuf:"bytes,5,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -412,13 +411,6 @@ func (x *RequestUserStatisticResponse) GetWithdrawalBalance() int64 {
 func (x *RequestUserStatisticResponse) GetNumderOfGames() int64 {
 	if x != nil {
 		return x.NumderOfGames
-	}
-	return 0
-}
-
-func (x *RequestUserStatisticResponse) GetNumderOfWins() int64 {
-	if x != nil {
-		return x.NumderOfWins
 	}
 	return 0
 }
@@ -499,8 +491,12 @@ func (x *RequestUserTransactionsHistoryRequest) GetEndDate() int64 {
 
 type RequestUserTransactionsHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Transactions  []*Transaction         `protobuf:"bytes,1,rep,name=Transactions,proto3" json:"Transactions,omitempty"`
-	Error         string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
+	TransferID    string                 `protobuf:"bytes,1,opt,name=TransferID,proto3" json:"TransferID,omitempty"`
+	Amount        int64                  `protobuf:"varint,2,opt,name=Amount,proto3" json:"Amount,omitempty"`
+	Accrualed     bool                   `protobuf:"varint,3,opt,name=Accrualed,proto3" json:"Accrualed,omitempty"`
+	Date          int64                  `protobuf:"varint,4,opt,name=Date,proto3" json:"Date,omitempty"`
+	Currency      string                 `protobuf:"bytes,5,opt,name=Currency,proto3" json:"Currency,omitempty"`
+	Error         string                 `protobuf:"bytes,6,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -535,116 +531,44 @@ func (*RequestUserTransactionsHistoryResponse) Descriptor() ([]byte, []int) {
 	return file_database_database_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RequestUserTransactionsHistoryResponse) GetTransactions() []*Transaction {
+func (x *RequestUserTransactionsHistoryResponse) GetTransferID() string {
 	if x != nil {
-		return x.Transactions
-	}
-	return nil
-}
-
-func (x *RequestUserTransactionsHistoryResponse) GetError() string {
-	if x != nil {
-		return x.Error
+		return x.TransferID
 	}
 	return ""
 }
 
-type Transaction struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderID       string                 `protobuf:"bytes,1,opt,name=OrderID,proto3" json:"OrderID,omitempty"`
-	Payload       string                 `protobuf:"bytes,2,opt,name=Payload,proto3" json:"Payload,omitempty"`
-	Amount        int64                  `protobuf:"varint,3,opt,name=Amount,proto3" json:"Amount,omitempty"`
-	Time          int64                  `protobuf:"varint,4,opt,name=Time,proto3" json:"Time,omitempty"`
-	Ban           bool                   `protobuf:"varint,5,opt,name=Ban,proto3" json:"Ban,omitempty"`
-	Type          string                 `protobuf:"bytes,6,opt,name=Type,proto3" json:"Type,omitempty"`
-	BillType      string                 `protobuf:"bytes,7,opt,name=BillType,proto3" json:"BillType,omitempty"`
-	Currency      string                 `protobuf:"bytes,8,opt,name=Currency,proto3" json:"Currency,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Transaction) Reset() {
-	*x = Transaction{}
-	mi := &file_database_database_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Transaction) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Transaction) ProtoMessage() {}
-
-func (x *Transaction) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
-func (*Transaction) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *Transaction) GetOrderID() string {
-	if x != nil {
-		return x.OrderID
-	}
-	return ""
-}
-
-func (x *Transaction) GetPayload() string {
-	if x != nil {
-		return x.Payload
-	}
-	return ""
-}
-
-func (x *Transaction) GetAmount() int64 {
+func (x *RequestUserTransactionsHistoryResponse) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
 	}
 	return 0
 }
 
-func (x *Transaction) GetTime() int64 {
+func (x *RequestUserTransactionsHistoryResponse) GetAccrualed() bool {
 	if x != nil {
-		return x.Time
-	}
-	return 0
-}
-
-func (x *Transaction) GetBan() bool {
-	if x != nil {
-		return x.Ban
+		return x.Accrualed
 	}
 	return false
 }
 
-func (x *Transaction) GetType() string {
+func (x *RequestUserTransactionsHistoryResponse) GetDate() int64 {
 	if x != nil {
-		return x.Type
+		return x.Date
 	}
-	return ""
+	return 0
 }
 
-func (x *Transaction) GetBillType() string {
-	if x != nil {
-		return x.BillType
-	}
-	return ""
-}
-
-func (x *Transaction) GetCurrency() string {
+func (x *RequestUserTransactionsHistoryResponse) GetCurrency() string {
 	if x != nil {
 		return x.Currency
+	}
+	return ""
+}
+
+func (x *RequestUserTransactionsHistoryResponse) GetError() string {
+	if x != nil {
+		return x.Error
 	}
 	return ""
 }
@@ -671,7 +595,7 @@ type AddFinishStatusRequest struct {
 
 func (x *AddFinishStatusRequest) Reset() {
 	*x = AddFinishStatusRequest{}
-	mi := &file_database_database_proto_msgTypes[11]
+	mi := &file_database_database_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -683,7 +607,7 @@ func (x *AddFinishStatusRequest) String() string {
 func (*AddFinishStatusRequest) ProtoMessage() {}
 
 func (x *AddFinishStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[11]
+	mi := &file_database_database_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -696,7 +620,7 @@ func (x *AddFinishStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFinishStatusRequest.ProtoReflect.Descriptor instead.
 func (*AddFinishStatusRequest) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{11}
+	return file_database_database_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AddFinishStatusRequest) GetGameID() string {
@@ -806,7 +730,7 @@ type AddFinishStatusResponse struct {
 
 func (x *AddFinishStatusResponse) Reset() {
 	*x = AddFinishStatusResponse{}
-	mi := &file_database_database_proto_msgTypes[12]
+	mi := &file_database_database_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -818,7 +742,7 @@ func (x *AddFinishStatusResponse) String() string {
 func (*AddFinishStatusResponse) ProtoMessage() {}
 
 func (x *AddFinishStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[12]
+	mi := &file_database_database_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -831,7 +755,7 @@ func (x *AddFinishStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFinishStatusResponse.ProtoReflect.Descriptor instead.
 func (*AddFinishStatusResponse) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{12}
+	return file_database_database_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *AddFinishStatusResponse) GetError() string {
@@ -859,7 +783,7 @@ type AddingUserPaymentRequest struct {
 
 func (x *AddingUserPaymentRequest) Reset() {
 	*x = AddingUserPaymentRequest{}
-	mi := &file_database_database_proto_msgTypes[13]
+	mi := &file_database_database_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -871,7 +795,7 @@ func (x *AddingUserPaymentRequest) String() string {
 func (*AddingUserPaymentRequest) ProtoMessage() {}
 
 func (x *AddingUserPaymentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[13]
+	mi := &file_database_database_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -884,7 +808,7 @@ func (x *AddingUserPaymentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddingUserPaymentRequest.ProtoReflect.Descriptor instead.
 func (*AddingUserPaymentRequest) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{13}
+	return file_database_database_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *AddingUserPaymentRequest) GetCharcherID() string {
@@ -966,7 +890,7 @@ type AddingUserPaymentResponse struct {
 
 func (x *AddingUserPaymentResponse) Reset() {
 	*x = AddingUserPaymentResponse{}
-	mi := &file_database_database_proto_msgTypes[14]
+	mi := &file_database_database_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -978,7 +902,7 @@ func (x *AddingUserPaymentResponse) String() string {
 func (*AddingUserPaymentResponse) ProtoMessage() {}
 
 func (x *AddingUserPaymentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[14]
+	mi := &file_database_database_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -991,7 +915,7 @@ func (x *AddingUserPaymentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddingUserPaymentResponse.ProtoReflect.Descriptor instead.
 func (*AddingUserPaymentResponse) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{14}
+	return file_database_database_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AddingUserPaymentResponse) GetError() string {
@@ -1011,7 +935,7 @@ type WithdrawalUserPaymentRequest struct {
 
 func (x *WithdrawalUserPaymentRequest) Reset() {
 	*x = WithdrawalUserPaymentRequest{}
-	mi := &file_database_database_proto_msgTypes[15]
+	mi := &file_database_database_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1023,7 +947,7 @@ func (x *WithdrawalUserPaymentRequest) String() string {
 func (*WithdrawalUserPaymentRequest) ProtoMessage() {}
 
 func (x *WithdrawalUserPaymentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[15]
+	mi := &file_database_database_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1036,7 +960,7 @@ func (x *WithdrawalUserPaymentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WithdrawalUserPaymentRequest.ProtoReflect.Descriptor instead.
 func (*WithdrawalUserPaymentRequest) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{15}
+	return file_database_database_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *WithdrawalUserPaymentRequest) GetUserID() int64 {
@@ -1063,7 +987,7 @@ type WithdrawalUserPaymentResponse struct {
 
 func (x *WithdrawalUserPaymentResponse) Reset() {
 	*x = WithdrawalUserPaymentResponse{}
-	mi := &file_database_database_proto_msgTypes[16]
+	mi := &file_database_database_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1075,7 +999,7 @@ func (x *WithdrawalUserPaymentResponse) String() string {
 func (*WithdrawalUserPaymentResponse) ProtoMessage() {}
 
 func (x *WithdrawalUserPaymentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_database_database_proto_msgTypes[16]
+	mi := &file_database_database_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1088,7 +1012,7 @@ func (x *WithdrawalUserPaymentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WithdrawalUserPaymentResponse.ProtoReflect.Descriptor instead.
 func (*WithdrawalUserPaymentResponse) Descriptor() ([]byte, []int) {
-	return file_database_database_proto_rawDescGZIP(), []int{16}
+	return file_database_database_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *WithdrawalUserPaymentResponse) GetMessage() string {
@@ -1126,30 +1050,26 @@ const file_database_database_proto_rawDesc = "" +
 	"\vSufficiency\x18\x01 \x01(\bR\vSufficiency\x12\x14\n" +
 	"\x05Error\x18\x02 \x01(\tR\x05Error\"5\n" +
 	"\x1bRequestUserStatisticRequest\x12\x16\n" +
-	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"\xee\x01\n" +
+	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\"\xca\x01\n" +
 	"\x1cRequestUserStatisticResponse\x12\x18\n" +
 	"\aBalance\x18\x01 \x01(\x03R\aBalance\x12,\n" +
 	"\x11WithdrawalBalance\x18\x02 \x01(\x03R\x11WithdrawalBalance\x12$\n" +
-	"\rNumderOfGames\x18\x03 \x01(\x03R\rNumderOfGames\x12\"\n" +
-	"\fNumderOfWins\x18\x04 \x01(\x03R\fNumderOfWins\x12&\n" +
-	"\x0eNumderOfLosses\x18\x05 \x01(\x03R\x0eNumderOfLosses\x12\x14\n" +
-	"\x05Error\x18\x06 \x01(\tR\x05Error\"w\n" +
+	"\rNumderOfGames\x18\x03 \x01(\x03R\rNumderOfGames\x12&\n" +
+	"\x0eNumderOfLosses\x18\x04 \x01(\x03R\x0eNumderOfLosses\x12\x14\n" +
+	"\x05Error\x18\x05 \x01(\tR\x05Error\"w\n" +
 	"%RequestUserTransactionsHistoryRequest\x12\x16\n" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x1c\n" +
 	"\tStartDate\x18\x02 \x01(\x03R\tStartDate\x12\x18\n" +
-	"\aEndDate\x18\x03 \x01(\x03R\aEndDate\"y\n" +
-	"&RequestUserTransactionsHistoryResponse\x129\n" +
-	"\fTransactions\x18\x01 \x03(\v2\x15.database.TransactionR\fTransactions\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error\"\xcb\x01\n" +
-	"\vTransaction\x12\x18\n" +
-	"\aOrderID\x18\x01 \x01(\tR\aOrderID\x12\x18\n" +
-	"\aPayload\x18\x02 \x01(\tR\aPayload\x12\x16\n" +
-	"\x06Amount\x18\x03 \x01(\x03R\x06Amount\x12\x12\n" +
-	"\x04Time\x18\x04 \x01(\x03R\x04Time\x12\x10\n" +
-	"\x03Ban\x18\x05 \x01(\bR\x03Ban\x12\x12\n" +
-	"\x04Type\x18\x06 \x01(\tR\x04Type\x12\x1a\n" +
-	"\bBillType\x18\a \x01(\tR\bBillType\x12\x1a\n" +
-	"\bCurrency\x18\b \x01(\tR\bCurrency\"\xb8\x03\n" +
+	"\aEndDate\x18\x03 \x01(\x03R\aEndDate\"\xc4\x01\n" +
+	"&RequestUserTransactionsHistoryResponse\x12\x1e\n" +
+	"\n" +
+	"TransferID\x18\x01 \x01(\tR\n" +
+	"TransferID\x12\x16\n" +
+	"\x06Amount\x18\x02 \x01(\x03R\x06Amount\x12\x1c\n" +
+	"\tAccrualed\x18\x03 \x01(\bR\tAccrualed\x12\x12\n" +
+	"\x04Date\x18\x04 \x01(\x03R\x04Date\x12\x1a\n" +
+	"\bCurrency\x18\x05 \x01(\tR\bCurrency\x12\x14\n" +
+	"\x05Error\x18\x06 \x01(\tR\x05Error\"\xb8\x03\n" +
 	"\x16AddFinishStatusRequest\x12\x16\n" +
 	"\x06GameID\x18\x01 \x01(\tR\x06GameID\x12\x1c\n" +
 	"\tWinnersID\x18\x02 \x03(\x03R\tWinnersID\x12\x18\n" +
@@ -1215,7 +1135,7 @@ func file_database_database_proto_rawDescGZIP() []byte {
 	return file_database_database_proto_rawDescData
 }
 
-var file_database_database_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_database_database_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_database_database_proto_goTypes = []any{
 	(*CreateUserRequest)(nil),                      // 0: database.CreateUserRequest
 	(*CreateUserResponse)(nil),                     // 1: database.CreateUserResponse
@@ -1227,37 +1147,35 @@ var file_database_database_proto_goTypes = []any{
 	(*RequestUserStatisticResponse)(nil),           // 7: database.RequestUserStatisticResponse
 	(*RequestUserTransactionsHistoryRequest)(nil),  // 8: database.RequestUserTransactionsHistoryRequest
 	(*RequestUserTransactionsHistoryResponse)(nil), // 9: database.RequestUserTransactionsHistoryResponse
-	(*Transaction)(nil),                            // 10: database.Transaction
-	(*AddFinishStatusRequest)(nil),                 // 11: database.AddFinishStatusRequest
-	(*AddFinishStatusResponse)(nil),                // 12: database.AddFinishStatusResponse
-	(*AddingUserPaymentRequest)(nil),               // 13: database.AddingUserPaymentRequest
-	(*AddingUserPaymentResponse)(nil),              // 14: database.AddingUserPaymentResponse
-	(*WithdrawalUserPaymentRequest)(nil),           // 15: database.WithdrawalUserPaymentRequest
-	(*WithdrawalUserPaymentResponse)(nil),          // 16: database.WithdrawalUserPaymentResponse
+	(*AddFinishStatusRequest)(nil),                 // 10: database.AddFinishStatusRequest
+	(*AddFinishStatusResponse)(nil),                // 11: database.AddFinishStatusResponse
+	(*AddingUserPaymentRequest)(nil),               // 12: database.AddingUserPaymentRequest
+	(*AddingUserPaymentResponse)(nil),              // 13: database.AddingUserPaymentResponse
+	(*WithdrawalUserPaymentRequest)(nil),           // 14: database.WithdrawalUserPaymentRequest
+	(*WithdrawalUserPaymentResponse)(nil),          // 15: database.WithdrawalUserPaymentResponse
 }
 var file_database_database_proto_depIdxs = []int32{
-	10, // 0: database.RequestUserTransactionsHistoryResponse.Transactions:type_name -> database.Transaction
-	0,  // 1: database.Database.CreateUser:input_type -> database.CreateUserRequest
-	2,  // 2: database.Database.CheckUser:input_type -> database.CheckUserRequest
-	4,  // 3: database.Database.CheckingBalanceSufficiency:input_type -> database.CheckingBalanceSufficiencyRequest
-	6,  // 4: database.Database.RequestUserStatistic:input_type -> database.RequestUserStatisticRequest
-	8,  // 5: database.Database.RequestUserTransactionsHistory:input_type -> database.RequestUserTransactionsHistoryRequest
-	11, // 6: database.Database.AddFinishStatus:input_type -> database.AddFinishStatusRequest
-	13, // 7: database.Database.AddingUserPayment:input_type -> database.AddingUserPaymentRequest
-	15, // 8: database.Database.WithdrawalUserPayment:input_type -> database.WithdrawalUserPaymentRequest
-	1,  // 9: database.Database.CreateUser:output_type -> database.CreateUserResponse
-	3,  // 10: database.Database.CheckUser:output_type -> database.CheckUserResponse
-	5,  // 11: database.Database.CheckingBalanceSufficiency:output_type -> database.CheckingBalanceSufficiencyResponse
-	7,  // 12: database.Database.RequestUserStatistic:output_type -> database.RequestUserStatisticResponse
-	9,  // 13: database.Database.RequestUserTransactionsHistory:output_type -> database.RequestUserTransactionsHistoryResponse
-	12, // 14: database.Database.AddFinishStatus:output_type -> database.AddFinishStatusResponse
-	14, // 15: database.Database.AddingUserPayment:output_type -> database.AddingUserPaymentResponse
-	16, // 16: database.Database.WithdrawalUserPayment:output_type -> database.WithdrawalUserPaymentResponse
-	9,  // [9:17] is the sub-list for method output_type
-	1,  // [1:9] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	0,  // 0: database.Database.CreateUser:input_type -> database.CreateUserRequest
+	2,  // 1: database.Database.CheckUser:input_type -> database.CheckUserRequest
+	4,  // 2: database.Database.CheckingBalanceSufficiency:input_type -> database.CheckingBalanceSufficiencyRequest
+	6,  // 3: database.Database.RequestUserStatistic:input_type -> database.RequestUserStatisticRequest
+	8,  // 4: database.Database.RequestUserTransactionsHistory:input_type -> database.RequestUserTransactionsHistoryRequest
+	10, // 5: database.Database.AddFinishStatus:input_type -> database.AddFinishStatusRequest
+	12, // 6: database.Database.AddingUserPayment:input_type -> database.AddingUserPaymentRequest
+	14, // 7: database.Database.WithdrawalUserPayment:input_type -> database.WithdrawalUserPaymentRequest
+	1,  // 8: database.Database.CreateUser:output_type -> database.CreateUserResponse
+	3,  // 9: database.Database.CheckUser:output_type -> database.CheckUserResponse
+	5,  // 10: database.Database.CheckingBalanceSufficiency:output_type -> database.CheckingBalanceSufficiencyResponse
+	7,  // 11: database.Database.RequestUserStatistic:output_type -> database.RequestUserStatisticResponse
+	9,  // 12: database.Database.RequestUserTransactionsHistory:output_type -> database.RequestUserTransactionsHistoryResponse
+	11, // 13: database.Database.AddFinishStatus:output_type -> database.AddFinishStatusResponse
+	13, // 14: database.Database.AddingUserPayment:output_type -> database.AddingUserPaymentResponse
+	15, // 15: database.Database.WithdrawalUserPayment:output_type -> database.WithdrawalUserPaymentResponse
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_database_database_proto_init() }
@@ -1271,7 +1189,7 @@ func file_database_database_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_database_database_proto_rawDesc), len(file_database_database_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
