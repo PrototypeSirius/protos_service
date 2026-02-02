@@ -54,6 +54,7 @@ message AccountReplenishmentRequest {
 }
 
 message AccountReplenishmentResponse {
+    string Invoice_link = 1;
     string Message = 1;
 }
 
@@ -64,8 +65,7 @@ message AccountWithdrawalRequest {
 }
 
 message AccountWithdrawalResponse {
-    string Invoice_link = 1;
-    string Message = 2;
+    string Message = 1;
 }
 
 message SendMessageRequest {
