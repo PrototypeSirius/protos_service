@@ -539,7 +539,8 @@ func (x *AccountWithdrawalRequest) GetWithdrawalRequestDateRaw() int64 {
 
 type AccountWithdrawalResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=Message,proto3" json:"Message,omitempty"`
+	InvoiceLink   string                 `protobuf:"bytes,1,opt,name=Invoice_link,json=InvoiceLink,proto3" json:"Invoice_link,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=Message,proto3" json:"Message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -572,6 +573,13 @@ func (x *AccountWithdrawalResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AccountWithdrawalResponse.ProtoReflect.Descriptor instead.
 func (*AccountWithdrawalResponse) Descriptor() ([]byte, []int) {
 	return file_bot_bot_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AccountWithdrawalResponse) GetInvoiceLink() string {
+	if x != nil {
+		return x.InvoiceLink
+	}
+	return ""
 }
 
 func (x *AccountWithdrawalResponse) GetMessage() string {
@@ -725,9 +733,10 @@ const file_bot_bot_proto_rawDesc = "" +
 	"\x18AccountWithdrawalRequest\x12\x16\n" +
 	"\x06Amount\x18\x01 \x01(\x03R\x06Amount\x12\x16\n" +
 	"\x06UserID\x18\x02 \x01(\x03R\x06UserID\x12:\n" +
-	"\x18WithdrawalRequestDateRaw\x18\x03 \x01(\x03R\x18WithdrawalRequestDateRaw\"5\n" +
-	"\x19AccountWithdrawalResponse\x12\x18\n" +
-	"\aMessage\x18\x01 \x01(\tR\aMessage\"F\n" +
+	"\x18WithdrawalRequestDateRaw\x18\x03 \x01(\x03R\x18WithdrawalRequestDateRaw\"X\n" +
+	"\x19AccountWithdrawalResponse\x12!\n" +
+	"\fInvoice_link\x18\x01 \x01(\tR\vInvoiceLink\x12\x18\n" +
+	"\aMessage\x18\x02 \x01(\tR\aMessage\"F\n" +
 	"\x12SendMessageRequest\x12\x16\n" +
 	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x18\n" +
 	"\aMessage\x18\x02 \x01(\tR\aMessage\"/\n" +

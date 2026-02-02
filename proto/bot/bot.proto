@@ -64,7 +64,8 @@ message AccountWithdrawalRequest {
 }
 
 message AccountWithdrawalResponse {
-    string Message = 1;
+    string Invoice_link = 1;
+    string Message = 2;
 }
 
 message SendMessageRequest {
