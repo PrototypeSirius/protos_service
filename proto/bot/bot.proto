@@ -55,7 +55,6 @@ message AccountReplenishmentRequest {
 
 message AccountReplenishmentResponse {
     string Invoice_link = 1;
-    string Message = 2;
 }
 
 message AccountWithdrawalRequest {
