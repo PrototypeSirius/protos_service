@@ -99,11 +99,6 @@ message AddingUserPaymentRequest {
     string OrderID = 8;
     string Payload = 9;
     int64 TimeTransfered = 10;
-    int64 Time = 11;
-    bool Ban = 12;
-    string BillType = 13;
-    string CloseType = 14;
-    repeated string TransactionChainID = 15;
 }
 
 message AddingUserPaymentResponse {

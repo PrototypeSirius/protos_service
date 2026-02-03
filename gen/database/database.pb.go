@@ -789,11 +789,6 @@ type AddingUserPaymentRequest struct {
 	OrderID                 string                 `protobuf:"bytes,8,opt,name=OrderID,proto3" json:"OrderID,omitempty"`
 	Payload                 string                 `protobuf:"bytes,9,opt,name=Payload,proto3" json:"Payload,omitempty"`
 	TimeTransfered          int64                  `protobuf:"varint,10,opt,name=TimeTransfered,proto3" json:"TimeTransfered,omitempty"`
-	Time                    int64                  `protobuf:"varint,11,opt,name=Time,proto3" json:"Time,omitempty"`
-	Ban                     bool                   `protobuf:"varint,12,opt,name=Ban,proto3" json:"Ban,omitempty"`
-	BillType                string                 `protobuf:"bytes,13,opt,name=BillType,proto3" json:"BillType,omitempty"`
-	CloseType               string                 `protobuf:"bytes,14,opt,name=CloseType,proto3" json:"CloseType,omitempty"`
-	TransactionChainID      []string               `protobuf:"bytes,15,rep,name=TransactionChainID,proto3" json:"TransactionChainID,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -896,41 +891,6 @@ func (x *AddingUserPaymentRequest) GetTimeTransfered() int64 {
 		return x.TimeTransfered
 	}
 	return 0
-}
-
-func (x *AddingUserPaymentRequest) GetTime() int64 {
-	if x != nil {
-		return x.Time
-	}
-	return 0
-}
-
-func (x *AddingUserPaymentRequest) GetBan() bool {
-	if x != nil {
-		return x.Ban
-	}
-	return false
-}
-
-func (x *AddingUserPaymentRequest) GetBillType() string {
-	if x != nil {
-		return x.BillType
-	}
-	return ""
-}
-
-func (x *AddingUserPaymentRequest) GetCloseType() string {
-	if x != nil {
-		return x.CloseType
-	}
-	return ""
-}
-
-func (x *AddingUserPaymentRequest) GetTransactionChainID() []string {
-	if x != nil {
-		return x.TransactionChainID
-	}
-	return nil
 }
 
 type AddingUserPaymentResponse struct {
@@ -1131,7 +1091,7 @@ const file_database_database_proto_rawDesc = "" +
 	"\tTricksMod\x18\x0e \x01(\bR\tTricksMod\x12\x14\n" +
 	"\x05Stake\x18\x0f \x01(\x03R\x05Stake\"3\n" +
 	"\x17AddFinishStatusResponse\x12\x18\n" +
-	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"\xee\x03\n" +
+	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"\xde\x02\n" +
 	"\x18AddingUserPaymentRequest\x12\x1a\n" +
 	"\bUniqueID\x18\x01 \x01(\tR\bUniqueID\x128\n" +
 	"\x17TelegramPaymentChargeID\x18\x02 \x01(\tR\x17TelegramPaymentChargeID\x12&\n" +
@@ -1143,12 +1103,7 @@ const file_database_database_proto_rawDesc = "" +
 	"\aOrderID\x18\b \x01(\tR\aOrderID\x12\x18\n" +
 	"\aPayload\x18\t \x01(\tR\aPayload\x12&\n" +
 	"\x0eTimeTransfered\x18\n" +
-	" \x01(\x03R\x0eTimeTransfered\x12\x12\n" +
-	"\x04Time\x18\v \x01(\x03R\x04Time\x12\x10\n" +
-	"\x03Ban\x18\f \x01(\bR\x03Ban\x12\x1a\n" +
-	"\bBillType\x18\r \x01(\tR\bBillType\x12\x1c\n" +
-	"\tCloseType\x18\x0e \x01(\tR\tCloseType\x12.\n" +
-	"\x12TransactionChainID\x18\x0f \x03(\tR\x12TransactionChainID\"5\n" +
+	" \x01(\x03R\x0eTimeTransfered\"5\n" +
 	"\x19AddingUserPaymentResponse\x12\x18\n" +
 	"\aSuccess\x18\x01 \x01(\bR\aSuccess\"N\n" +
 	"\x1cWithdrawalUserPaymentRequest\x12\x16\n" +

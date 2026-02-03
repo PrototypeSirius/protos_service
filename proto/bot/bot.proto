@@ -50,7 +50,6 @@ message User {
 message AccountReplenishmentRequest {
     int64 Amount = 1;
     int64 UserID = 2;
-    int64 ReplenishmentRequestDateRaw = 3;
 }
 
 message AccountReplenishmentResponse {

@@ -374,12 +374,11 @@ func (x *User) GetPhotoURL() string {
 }
 
 type AccountReplenishmentRequest struct {
-	state                       protoimpl.MessageState `protogen:"open.v1"`
-	Amount                      int64                  `protobuf:"varint,1,opt,name=Amount,proto3" json:"Amount,omitempty"`
-	UserID                      int64                  `protobuf:"varint,2,opt,name=UserID,proto3" json:"UserID,omitempty"`
-	ReplenishmentRequestDateRaw int64                  `protobuf:"varint,3,opt,name=ReplenishmentRequestDateRaw,proto3" json:"ReplenishmentRequestDateRaw,omitempty"`
-	unknownFields               protoimpl.UnknownFields
-	sizeCache                   protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Amount        int64                  `protobuf:"varint,1,opt,name=Amount,proto3" json:"Amount,omitempty"`
+	UserID        int64                  `protobuf:"varint,2,opt,name=UserID,proto3" json:"UserID,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AccountReplenishmentRequest) Reset() {
@@ -422,13 +421,6 @@ func (x *AccountReplenishmentRequest) GetAmount() int64 {
 func (x *AccountReplenishmentRequest) GetUserID() int64 {
 	if x != nil {
 		return x.UserID
-	}
-	return 0
-}
-
-func (x *AccountReplenishmentRequest) GetReplenishmentRequestDateRaw() int64 {
-	if x != nil {
-		return x.ReplenishmentRequestDateRaw
 	}
 	return 0
 }
@@ -715,11 +707,10 @@ const file_bot_bot_proto_rawDesc = "" +
 	"\bUsername\x18\b \x01(\tR\bUsername\x12\"\n" +
 	"\fLanguageCode\x18\t \x01(\tR\fLanguageCode\x12\x1a\n" +
 	"\bPhotoURL\x18\n" +
-	" \x01(\tR\bPhotoURL\"\x8f\x01\n" +
+	" \x01(\tR\bPhotoURL\"M\n" +
 	"\x1bAccountReplenishmentRequest\x12\x16\n" +
 	"\x06Amount\x18\x01 \x01(\x03R\x06Amount\x12\x16\n" +
-	"\x06UserID\x18\x02 \x01(\x03R\x06UserID\x12@\n" +
-	"\x1bReplenishmentRequestDateRaw\x18\x03 \x01(\x03R\x1bReplenishmentRequestDateRaw\"A\n" +
+	"\x06UserID\x18\x02 \x01(\x03R\x06UserID\"A\n" +
 	"\x1cAccountReplenishmentResponse\x12!\n" +
 	"\fInvoice_link\x18\x01 \x01(\tR\vInvoiceLink\"\x86\x01\n" +
 	"\x18AccountWithdrawalRequest\x12\x16\n" +
