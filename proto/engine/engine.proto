@@ -1,0 +1,84 @@
+syntax = "proto3";
+package engine;
+option go_package = "sirius.engine.v1;engine1";
+
+service Engine {
+    rpc WedSocket (WedSocketRequest) returns (WedSocketResponse);
+    rpc LobbyList (LobbyListRequest) returns (LobbyListResponse);
+}
+
+message WedSocketRequest {
+    int64 UserID = 1;
+    string action = 2;
+    bytes payload = 3;
+}
+
+message WedSocketResponse {
+  string event_type = 1;
+  bytes payload = 2;
+}
+
+message LobbyListRequest {
+    Mod mod = 1;
+}
+
+message LobbyListResponse {
+    int64 pages = 1;
+    repeated Room rooms = 2;
+}
+
+message Room {
+    string type = 1;
+    string roomid = 2;
+    string roomname = 3;
+    Mod mod = 4;
+    bool gamestatus = 5;
+    int64 usercount = 6;
+    repeated PlayerInfo userslist = 7;
+}
+
+message Mod {
+    int64 players = 1;
+    int64 decksize = 2;
+    int64 stake = 3;
+    bool speed = 4;
+    bool passing = 5;
+    bool throw = 6;
+    bool tricks = 7;
+    bool private = 8;
+}
+
+message PlayerInfo {
+    int64 authdateraw = 1;
+    int64 cansendsfterraw = 2;
+    Chat chat = 3;
+    string chattype = 4;
+    int64 chatinstance = 5;
+    string hash = 6;
+    string queryid = 7;
+    User receiver = 8;
+    string startparam = 9;
+    User user = 10;
+}
+
+message Chat {
+    int64 id = 1;
+    string type = 2;
+    string title = 3;
+    string photourl = 4;
+    string username = 5;
+}
+
+message User {
+    bool addedtoattachmentmenu = 1;
+    bool allowswritetopm = 2;
+    string firstname = 3;
+    int64 id = 4;
+    bool isbot = 5;
+    bool ispremium = 6;
+    string lastname = 7;
+    string username = 8;
+    string languagecode = 9;
+    string photourl = 10;
+}
+
