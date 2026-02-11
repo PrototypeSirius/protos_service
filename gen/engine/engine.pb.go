@@ -23,7 +23,7 @@ const (
 
 type WedSocketRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        int64                  `protobuf:"varint,1,opt,name=UserID,proto3" json:"UserID,omitempty"`
+	User          *User                  `protobuf:"bytes,1,opt,name=User,proto3" json:"User,omitempty"`
 	Action        string                 `protobuf:"bytes,2,opt,name=action,proto3" json:"action,omitempty"`
 	Payload       []byte                 `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -60,11 +60,11 @@ func (*WedSocketRequest) Descriptor() ([]byte, []int) {
 	return file_engine_engine_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *WedSocketRequest) GetUserID() int64 {
+func (x *WedSocketRequest) GetUser() *User {
 	if x != nil {
-		return x.UserID
+		return x.User
 	}
-	return 0
+	return nil
 }
 
 func (x *WedSocketRequest) GetAction() string {
@@ -733,9 +733,9 @@ var File_engine_engine_proto protoreflect.FileDescriptor
 
 const file_engine_engine_proto_rawDesc = "" +
 	"\n" +
-	"\x13engine/engine.proto\x12\x06engine\"\\\n" +
-	"\x10WedSocketRequest\x12\x16\n" +
-	"\x06UserID\x18\x01 \x01(\x03R\x06UserID\x12\x16\n" +
+	"\x13engine/engine.proto\x12\x06engine\"f\n" +
+	"\x10WedSocketRequest\x12 \n" +
+	"\x04User\x18\x01 \x01(\v2\f.engine.UserR\x04User\x12\x16\n" +
 	"\x06action\x18\x02 \x01(\tR\x06action\x12\x18\n" +
 	"\apayload\x18\x03 \x01(\fR\apayload\"L\n" +
 	"\x11WedSocketResponse\x12\x1d\n" +
@@ -828,22 +828,23 @@ var file_engine_engine_proto_goTypes = []any{
 	(*User)(nil),              // 8: engine.User
 }
 var file_engine_engine_proto_depIdxs = []int32{
-	5, // 0: engine.LobbyListRequest.mod:type_name -> engine.Mod
-	4, // 1: engine.LobbyListResponse.rooms:type_name -> engine.Room
-	5, // 2: engine.Room.mod:type_name -> engine.Mod
-	6, // 3: engine.Room.userslist:type_name -> engine.PlayerInfo
-	7, // 4: engine.PlayerInfo.chat:type_name -> engine.Chat
-	8, // 5: engine.PlayerInfo.receiver:type_name -> engine.User
-	8, // 6: engine.PlayerInfo.user:type_name -> engine.User
-	0, // 7: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
-	2, // 8: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
-	1, // 9: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
-	3, // 10: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
-	9, // [9:11] is the sub-list for method output_type
-	7, // [7:9] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	8,  // 0: engine.WedSocketRequest.User:type_name -> engine.User
+	5,  // 1: engine.LobbyListRequest.mod:type_name -> engine.Mod
+	4,  // 2: engine.LobbyListResponse.rooms:type_name -> engine.Room
+	5,  // 3: engine.Room.mod:type_name -> engine.Mod
+	6,  // 4: engine.Room.userslist:type_name -> engine.PlayerInfo
+	7,  // 5: engine.PlayerInfo.chat:type_name -> engine.Chat
+	8,  // 6: engine.PlayerInfo.receiver:type_name -> engine.User
+	8,  // 7: engine.PlayerInfo.user:type_name -> engine.User
+	0,  // 8: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
+	2,  // 9: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
+	1,  // 10: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
+	3,  // 11: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
+	10, // [10:12] is the sub-list for method output_type
+	8,  // [8:10] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_engine_engine_proto_init() }

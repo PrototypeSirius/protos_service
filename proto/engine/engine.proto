@@ -8,7 +8,7 @@ service Engine {
 }
 
 message WedSocketRequest {
-    int64 UserID = 1;
+    User User = 1;
     string action = 2;
     bytes payload = 3;
 }
