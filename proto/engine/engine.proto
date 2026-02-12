@@ -20,7 +20,30 @@ message WedSocketResponse {
 }
 
 message LobbyListRequest {
-    Mod Mod = 1;
+    int64 Page = 1;
+    int64 SizePage = 2;
+    SearchMod SearchMod = 3;
+    SearchParms ParmsMod = 4;
+}
+
+message SearchMod {
+    bool MaxPlayers = 1;
+    bool DeckSize = 2;
+    bool SpeedMod = 3;
+    bool ThrowMod = 4;
+    bool PassingMod = 5;
+    bool TricksMod = 6;
+    bool Stake = 7;
+}
+
+message SearchParms {
+    int64 MaxPlayers = 1;
+    int64 DeckSize = 2;
+    bool SpeedMod = 3;
+    bool ThrowMod = 4;
+    bool PassingMod = 5;
+    bool TricksMod = 6;
+    repeated int64 Stake = 7;
 }
 
 message LobbyListResponse {
