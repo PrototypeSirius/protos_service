@@ -29,13 +29,11 @@ message LobbyListResponse {
 }
 
 message Room {
-    string Type = 1;
-    string Roomid = 2;
-    string Roomname = 3;
-    Mod Mod = 4;
-    bool Gamestatus = 5;
-    int64 Usercount = 6;
-    repeated User Userslist = 7;
+    string Roomid = 1;
+    Mod Mod = 2;
+    bool Open = 3;
+    int64 Usercount = 4;
+    repeated User Userslist = 5;
 }
 
 message Mod {

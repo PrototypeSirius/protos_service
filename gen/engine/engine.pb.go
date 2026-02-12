@@ -239,13 +239,11 @@ func (x *LobbyListResponse) GetRooms() []*Room {
 
 type Room struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          string                 `protobuf:"bytes,1,opt,name=Type,proto3" json:"Type,omitempty"`
-	Roomid        string                 `protobuf:"bytes,2,opt,name=Roomid,proto3" json:"Roomid,omitempty"`
-	Roomname      string                 `protobuf:"bytes,3,opt,name=Roomname,proto3" json:"Roomname,omitempty"`
-	Mod           *Mod                   `protobuf:"bytes,4,opt,name=Mod,proto3" json:"Mod,omitempty"`
-	Gamestatus    bool                   `protobuf:"varint,5,opt,name=Gamestatus,proto3" json:"Gamestatus,omitempty"`
-	Usercount     int64                  `protobuf:"varint,6,opt,name=Usercount,proto3" json:"Usercount,omitempty"`
-	Userslist     []*User                `protobuf:"bytes,7,rep,name=Userslist,proto3" json:"Userslist,omitempty"`
+	Roomid        string                 `protobuf:"bytes,1,opt,name=Roomid,proto3" json:"Roomid,omitempty"`
+	Mod           *Mod                   `protobuf:"bytes,2,opt,name=Mod,proto3" json:"Mod,omitempty"`
+	Open          bool                   `protobuf:"varint,3,opt,name=Open,proto3" json:"Open,omitempty"`
+	Usercount     int64                  `protobuf:"varint,4,opt,name=Usercount,proto3" json:"Usercount,omitempty"`
+	Userslist     []*User                `protobuf:"bytes,5,rep,name=Userslist,proto3" json:"Userslist,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -280,23 +278,9 @@ func (*Room) Descriptor() ([]byte, []int) {
 	return file_engine_engine_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *Room) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
 func (x *Room) GetRoomid() string {
 	if x != nil {
 		return x.Roomid
-	}
-	return ""
-}
-
-func (x *Room) GetRoomname() string {
-	if x != nil {
-		return x.Roomname
 	}
 	return ""
 }
@@ -308,9 +292,9 @@ func (x *Room) GetMod() *Mod {
 	return nil
 }
 
-func (x *Room) GetGamestatus() bool {
+func (x *Room) GetOpen() bool {
 	if x != nil {
-		return x.Gamestatus
+		return x.Open
 	}
 	return false
 }
@@ -563,17 +547,13 @@ const file_engine_engine_proto_rawDesc = "" +
 	"\x03Mod\x18\x01 \x01(\v2\v.engine.ModR\x03Mod\"M\n" +
 	"\x11LobbyListResponse\x12\x14\n" +
 	"\x05Pages\x18\x01 \x01(\x03R\x05Pages\x12\"\n" +
-	"\x05Rooms\x18\x02 \x03(\v2\f.engine.RoomR\x05Rooms\"\xd7\x01\n" +
-	"\x04Room\x12\x12\n" +
-	"\x04Type\x18\x01 \x01(\tR\x04Type\x12\x16\n" +
-	"\x06Roomid\x18\x02 \x01(\tR\x06Roomid\x12\x1a\n" +
-	"\bRoomname\x18\x03 \x01(\tR\bRoomname\x12\x1d\n" +
-	"\x03Mod\x18\x04 \x01(\v2\v.engine.ModR\x03Mod\x12\x1e\n" +
-	"\n" +
-	"Gamestatus\x18\x05 \x01(\bR\n" +
-	"Gamestatus\x12\x1c\n" +
-	"\tUsercount\x18\x06 \x01(\x03R\tUsercount\x12*\n" +
-	"\tUserslist\x18\a \x03(\v2\f.engine.UserR\tUserslist\"\xc9\x01\n" +
+	"\x05Rooms\x18\x02 \x03(\v2\f.engine.RoomR\x05Rooms\"\x9b\x01\n" +
+	"\x04Room\x12\x16\n" +
+	"\x06Roomid\x18\x01 \x01(\tR\x06Roomid\x12\x1d\n" +
+	"\x03Mod\x18\x02 \x01(\v2\v.engine.ModR\x03Mod\x12\x12\n" +
+	"\x04Open\x18\x03 \x01(\bR\x04Open\x12\x1c\n" +
+	"\tUsercount\x18\x04 \x01(\x03R\tUsercount\x12*\n" +
+	"\tUserslist\x18\x05 \x03(\v2\f.engine.UserR\tUserslist\"\xc9\x01\n" +
 	"\x03Mod\x12\x18\n" +
 	"\aPlayers\x18\x01 \x01(\x03R\aPlayers\x12\x1a\n" +
 	"\bDecksize\x18\x02 \x01(\x03R\bDecksize\x12\x14\n" +
