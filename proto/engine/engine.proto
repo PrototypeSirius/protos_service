@@ -9,76 +9,56 @@ service Engine {
 
 message WedSocketRequest {
     User User = 1;
-    string action = 2;
-    bytes payload = 3;
+    string Action = 2;
+    bytes Payload = 3;
 }
 
 message WedSocketResponse {
-  string event_type = 1;
-  bytes payload = 2;
+  string Event_type = 1;
+  Room Room = 2;
+  bytes Payload = 3;
 }
 
 message LobbyListRequest {
-    Mod mod = 1;
+    Mod Mod = 1;
 }
 
 message LobbyListResponse {
-    int64 pages = 1;
-    repeated Room rooms = 2;
+    int64 Pages = 1;
+    repeated Room Rooms = 2;
 }
 
 message Room {
-    string type = 1;
-    string roomid = 2;
-    string roomname = 3;
-    Mod mod = 4;
-    bool gamestatus = 5;
-    int64 usercount = 6;
-    repeated PlayerInfo userslist = 7;
+    string Type = 1;
+    string Roomid = 2;
+    string Roomname = 3;
+    Mod Mod = 4;
+    bool Gamestatus = 5;
+    int64 Usercount = 6;
+    repeated User Userslist = 7;
 }
 
 message Mod {
-    int64 players = 1;
-    int64 decksize = 2;
-    int64 stake = 3;
-    bool speed = 4;
-    bool passing = 5;
-    bool throw = 6;
-    bool tricks = 7;
-    bool private = 8;
-}
-
-message PlayerInfo {
-    int64 authdateraw = 1;
-    int64 cansendsfterraw = 2;
-    Chat chat = 3;
-    string chattype = 4;
-    int64 chatinstance = 5;
-    string hash = 6;
-    string queryid = 7;
-    User receiver = 8;
-    string startparam = 9;
-    User user = 10;
-}
-
-message Chat {
-    int64 id = 1;
-    string type = 2;
-    string title = 3;
-    string photourl = 4;
-    string username = 5;
+    int64 Players = 1;
+    int64 Decksize = 2;
+    int64 Stake = 3;
+    bool Speed = 4;
+    bool Passing = 5;
+    bool Throw = 6;
+    bool Tricks = 7;
+    bool Private = 8;
 }
 
 message User {
-    bool addedtoattachmentmenu = 1;
-    bool allowswritetopm = 2;
-    string firstname = 3;
-    int64 id = 4;
-    bool isbot = 5;
-    bool ispremium = 6;
-    string lastname = 7;
-    string username = 8;
-    string languagecode = 9;
-    string photourl = 10;
+    bool Addedtoattachmentmenu = 1;
+    bool Allowswritetopm = 2;
+    string Firstname = 3;
+    int64 Id = 4;
+    bool Isbot = 5;
+    bool Ispremium = 6;
+    string Lastname = 7;
+    string Username = 8;
+    string Languagecode = 9;
+    string Photourl = 10;
 }
 

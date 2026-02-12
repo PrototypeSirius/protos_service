@@ -24,8 +24,8 @@ const (
 type WedSocketRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *User                  `protobuf:"bytes,1,opt,name=User,proto3" json:"User,omitempty"`
-	Action        string                 `protobuf:"bytes,2,opt,name=action,proto3" json:"action,omitempty"`
-	Payload       []byte                 `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	Action        string                 `protobuf:"bytes,2,opt,name=Action,proto3" json:"Action,omitempty"`
+	Payload       []byte                 `protobuf:"bytes,3,opt,name=Payload,proto3" json:"Payload,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -83,8 +83,9 @@ func (x *WedSocketRequest) GetPayload() []byte {
 
 type WedSocketResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventType     string                 `protobuf:"bytes,1,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
-	Payload       []byte                 `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+	EventType     string                 `protobuf:"bytes,1,opt,name=Event_type,json=EventType,proto3" json:"Event_type,omitempty"`
+	Room          *Room                  `protobuf:"bytes,2,opt,name=Room,proto3" json:"Room,omitempty"`
+	Payload       []byte                 `protobuf:"bytes,3,opt,name=Payload,proto3" json:"Payload,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,6 +127,13 @@ func (x *WedSocketResponse) GetEventType() string {
 	return ""
 }
 
+func (x *WedSocketResponse) GetRoom() *Room {
+	if x != nil {
+		return x.Room
+	}
+	return nil
+}
+
 func (x *WedSocketResponse) GetPayload() []byte {
 	if x != nil {
 		return x.Payload
@@ -135,7 +143,7 @@ func (x *WedSocketResponse) GetPayload() []byte {
 
 type LobbyListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Mod           *Mod                   `protobuf:"bytes,1,opt,name=mod,proto3" json:"mod,omitempty"`
+	Mod           *Mod                   `protobuf:"bytes,1,opt,name=Mod,proto3" json:"Mod,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -179,8 +187,8 @@ func (x *LobbyListRequest) GetMod() *Mod {
 
 type LobbyListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pages         int64                  `protobuf:"varint,1,opt,name=pages,proto3" json:"pages,omitempty"`
-	Rooms         []*Room                `protobuf:"bytes,2,rep,name=rooms,proto3" json:"rooms,omitempty"`
+	Pages         int64                  `protobuf:"varint,1,opt,name=Pages,proto3" json:"Pages,omitempty"`
+	Rooms         []*Room                `protobuf:"bytes,2,rep,name=Rooms,proto3" json:"Rooms,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -231,13 +239,13 @@ func (x *LobbyListResponse) GetRooms() []*Room {
 
 type Room struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	Roomid        string                 `protobuf:"bytes,2,opt,name=roomid,proto3" json:"roomid,omitempty"`
-	Roomname      string                 `protobuf:"bytes,3,opt,name=roomname,proto3" json:"roomname,omitempty"`
-	Mod           *Mod                   `protobuf:"bytes,4,opt,name=mod,proto3" json:"mod,omitempty"`
-	Gamestatus    bool                   `protobuf:"varint,5,opt,name=gamestatus,proto3" json:"gamestatus,omitempty"`
-	Usercount     int64                  `protobuf:"varint,6,opt,name=usercount,proto3" json:"usercount,omitempty"`
-	Userslist     []*PlayerInfo          `protobuf:"bytes,7,rep,name=userslist,proto3" json:"userslist,omitempty"`
+	Type          string                 `protobuf:"bytes,1,opt,name=Type,proto3" json:"Type,omitempty"`
+	Roomid        string                 `protobuf:"bytes,2,opt,name=Roomid,proto3" json:"Roomid,omitempty"`
+	Roomname      string                 `protobuf:"bytes,3,opt,name=Roomname,proto3" json:"Roomname,omitempty"`
+	Mod           *Mod                   `protobuf:"bytes,4,opt,name=Mod,proto3" json:"Mod,omitempty"`
+	Gamestatus    bool                   `protobuf:"varint,5,opt,name=Gamestatus,proto3" json:"Gamestatus,omitempty"`
+	Usercount     int64                  `protobuf:"varint,6,opt,name=Usercount,proto3" json:"Usercount,omitempty"`
+	Userslist     []*User                `protobuf:"bytes,7,rep,name=Userslist,proto3" json:"Userslist,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -314,7 +322,7 @@ func (x *Room) GetUsercount() int64 {
 	return 0
 }
 
-func (x *Room) GetUserslist() []*PlayerInfo {
+func (x *Room) GetUserslist() []*User {
 	if x != nil {
 		return x.Userslist
 	}
@@ -323,14 +331,14 @@ func (x *Room) GetUserslist() []*PlayerInfo {
 
 type Mod struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Players       int64                  `protobuf:"varint,1,opt,name=players,proto3" json:"players,omitempty"`
-	Decksize      int64                  `protobuf:"varint,2,opt,name=decksize,proto3" json:"decksize,omitempty"`
-	Stake         int64                  `protobuf:"varint,3,opt,name=stake,proto3" json:"stake,omitempty"`
-	Speed         bool                   `protobuf:"varint,4,opt,name=speed,proto3" json:"speed,omitempty"`
-	Passing       bool                   `protobuf:"varint,5,opt,name=passing,proto3" json:"passing,omitempty"`
-	Throw         bool                   `protobuf:"varint,6,opt,name=throw,proto3" json:"throw,omitempty"`
-	Tricks        bool                   `protobuf:"varint,7,opt,name=tricks,proto3" json:"tricks,omitempty"`
-	Private       bool                   `protobuf:"varint,8,opt,name=private,proto3" json:"private,omitempty"`
+	Players       int64                  `protobuf:"varint,1,opt,name=Players,proto3" json:"Players,omitempty"`
+	Decksize      int64                  `protobuf:"varint,2,opt,name=Decksize,proto3" json:"Decksize,omitempty"`
+	Stake         int64                  `protobuf:"varint,3,opt,name=Stake,proto3" json:"Stake,omitempty"`
+	Speed         bool                   `protobuf:"varint,4,opt,name=Speed,proto3" json:"Speed,omitempty"`
+	Passing       bool                   `protobuf:"varint,5,opt,name=Passing,proto3" json:"Passing,omitempty"`
+	Throw         bool                   `protobuf:"varint,6,opt,name=Throw,proto3" json:"Throw,omitempty"`
+	Tricks        bool                   `protobuf:"varint,7,opt,name=Tricks,proto3" json:"Tricks,omitempty"`
+	Private       bool                   `protobuf:"varint,8,opt,name=Private,proto3" json:"Private,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -421,217 +429,25 @@ func (x *Mod) GetPrivate() bool {
 	return false
 }
 
-type PlayerInfo struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Authdateraw     int64                  `protobuf:"varint,1,opt,name=authdateraw,proto3" json:"authdateraw,omitempty"`
-	Cansendsfterraw int64                  `protobuf:"varint,2,opt,name=cansendsfterraw,proto3" json:"cansendsfterraw,omitempty"`
-	Chat            *Chat                  `protobuf:"bytes,3,opt,name=chat,proto3" json:"chat,omitempty"`
-	Chattype        string                 `protobuf:"bytes,4,opt,name=chattype,proto3" json:"chattype,omitempty"`
-	Chatinstance    int64                  `protobuf:"varint,5,opt,name=chatinstance,proto3" json:"chatinstance,omitempty"`
-	Hash            string                 `protobuf:"bytes,6,opt,name=hash,proto3" json:"hash,omitempty"`
-	Queryid         string                 `protobuf:"bytes,7,opt,name=queryid,proto3" json:"queryid,omitempty"`
-	Receiver        *User                  `protobuf:"bytes,8,opt,name=receiver,proto3" json:"receiver,omitempty"`
-	Startparam      string                 `protobuf:"bytes,9,opt,name=startparam,proto3" json:"startparam,omitempty"`
-	User            *User                  `protobuf:"bytes,10,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *PlayerInfo) Reset() {
-	*x = PlayerInfo{}
-	mi := &file_engine_engine_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PlayerInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PlayerInfo) ProtoMessage() {}
-
-func (x *PlayerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PlayerInfo.ProtoReflect.Descriptor instead.
-func (*PlayerInfo) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *PlayerInfo) GetAuthdateraw() int64 {
-	if x != nil {
-		return x.Authdateraw
-	}
-	return 0
-}
-
-func (x *PlayerInfo) GetCansendsfterraw() int64 {
-	if x != nil {
-		return x.Cansendsfterraw
-	}
-	return 0
-}
-
-func (x *PlayerInfo) GetChat() *Chat {
-	if x != nil {
-		return x.Chat
-	}
-	return nil
-}
-
-func (x *PlayerInfo) GetChattype() string {
-	if x != nil {
-		return x.Chattype
-	}
-	return ""
-}
-
-func (x *PlayerInfo) GetChatinstance() int64 {
-	if x != nil {
-		return x.Chatinstance
-	}
-	return 0
-}
-
-func (x *PlayerInfo) GetHash() string {
-	if x != nil {
-		return x.Hash
-	}
-	return ""
-}
-
-func (x *PlayerInfo) GetQueryid() string {
-	if x != nil {
-		return x.Queryid
-	}
-	return ""
-}
-
-func (x *PlayerInfo) GetReceiver() *User {
-	if x != nil {
-		return x.Receiver
-	}
-	return nil
-}
-
-func (x *PlayerInfo) GetStartparam() string {
-	if x != nil {
-		return x.Startparam
-	}
-	return ""
-}
-
-func (x *PlayerInfo) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type Chat struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
-	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Photourl      string                 `protobuf:"bytes,4,opt,name=photourl,proto3" json:"photourl,omitempty"`
-	Username      string                 `protobuf:"bytes,5,opt,name=username,proto3" json:"username,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Chat) Reset() {
-	*x = Chat{}
-	mi := &file_engine_engine_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Chat) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Chat) ProtoMessage() {}
-
-func (x *Chat) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Chat.ProtoReflect.Descriptor instead.
-func (*Chat) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Chat) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *Chat) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-func (x *Chat) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Chat) GetPhotourl() string {
-	if x != nil {
-		return x.Photourl
-	}
-	return ""
-}
-
-func (x *Chat) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
 type User struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Addedtoattachmentmenu bool                   `protobuf:"varint,1,opt,name=addedtoattachmentmenu,proto3" json:"addedtoattachmentmenu,omitempty"`
-	Allowswritetopm       bool                   `protobuf:"varint,2,opt,name=allowswritetopm,proto3" json:"allowswritetopm,omitempty"`
-	Firstname             string                 `protobuf:"bytes,3,opt,name=firstname,proto3" json:"firstname,omitempty"`
-	Id                    int64                  `protobuf:"varint,4,opt,name=id,proto3" json:"id,omitempty"`
-	Isbot                 bool                   `protobuf:"varint,5,opt,name=isbot,proto3" json:"isbot,omitempty"`
-	Ispremium             bool                   `protobuf:"varint,6,opt,name=ispremium,proto3" json:"ispremium,omitempty"`
-	Lastname              string                 `protobuf:"bytes,7,opt,name=lastname,proto3" json:"lastname,omitempty"`
-	Username              string                 `protobuf:"bytes,8,opt,name=username,proto3" json:"username,omitempty"`
-	Languagecode          string                 `protobuf:"bytes,9,opt,name=languagecode,proto3" json:"languagecode,omitempty"`
-	Photourl              string                 `protobuf:"bytes,10,opt,name=photourl,proto3" json:"photourl,omitempty"`
+	Addedtoattachmentmenu bool                   `protobuf:"varint,1,opt,name=Addedtoattachmentmenu,proto3" json:"Addedtoattachmentmenu,omitempty"`
+	Allowswritetopm       bool                   `protobuf:"varint,2,opt,name=Allowswritetopm,proto3" json:"Allowswritetopm,omitempty"`
+	Firstname             string                 `protobuf:"bytes,3,opt,name=Firstname,proto3" json:"Firstname,omitempty"`
+	Id                    int64                  `protobuf:"varint,4,opt,name=Id,proto3" json:"Id,omitempty"`
+	Isbot                 bool                   `protobuf:"varint,5,opt,name=Isbot,proto3" json:"Isbot,omitempty"`
+	Ispremium             bool                   `protobuf:"varint,6,opt,name=Ispremium,proto3" json:"Ispremium,omitempty"`
+	Lastname              string                 `protobuf:"bytes,7,opt,name=Lastname,proto3" json:"Lastname,omitempty"`
+	Username              string                 `protobuf:"bytes,8,opt,name=Username,proto3" json:"Username,omitempty"`
+	Languagecode          string                 `protobuf:"bytes,9,opt,name=Languagecode,proto3" json:"Languagecode,omitempty"`
+	Photourl              string                 `protobuf:"bytes,10,opt,name=Photourl,proto3" json:"Photourl,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_engine_engine_proto_msgTypes[8]
+	mi := &file_engine_engine_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +459,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[8]
+	mi := &file_engine_engine_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +472,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{8}
+	return file_engine_engine_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *User) GetAddedtoattachmentmenu() bool {
@@ -736,69 +552,49 @@ const file_engine_engine_proto_rawDesc = "" +
 	"\x13engine/engine.proto\x12\x06engine\"f\n" +
 	"\x10WedSocketRequest\x12 \n" +
 	"\x04User\x18\x01 \x01(\v2\f.engine.UserR\x04User\x12\x16\n" +
-	"\x06action\x18\x02 \x01(\tR\x06action\x12\x18\n" +
-	"\apayload\x18\x03 \x01(\fR\apayload\"L\n" +
+	"\x06Action\x18\x02 \x01(\tR\x06Action\x12\x18\n" +
+	"\aPayload\x18\x03 \x01(\fR\aPayload\"n\n" +
 	"\x11WedSocketResponse\x12\x1d\n" +
 	"\n" +
-	"event_type\x18\x01 \x01(\tR\teventType\x12\x18\n" +
-	"\apayload\x18\x02 \x01(\fR\apayload\"1\n" +
+	"Event_type\x18\x01 \x01(\tR\tEventType\x12 \n" +
+	"\x04Room\x18\x02 \x01(\v2\f.engine.RoomR\x04Room\x12\x18\n" +
+	"\aPayload\x18\x03 \x01(\fR\aPayload\"1\n" +
 	"\x10LobbyListRequest\x12\x1d\n" +
-	"\x03mod\x18\x01 \x01(\v2\v.engine.ModR\x03mod\"M\n" +
+	"\x03Mod\x18\x01 \x01(\v2\v.engine.ModR\x03Mod\"M\n" +
 	"\x11LobbyListResponse\x12\x14\n" +
-	"\x05pages\x18\x01 \x01(\x03R\x05pages\x12\"\n" +
-	"\x05rooms\x18\x02 \x03(\v2\f.engine.RoomR\x05rooms\"\xdd\x01\n" +
+	"\x05Pages\x18\x01 \x01(\x03R\x05Pages\x12\"\n" +
+	"\x05Rooms\x18\x02 \x03(\v2\f.engine.RoomR\x05Rooms\"\xd7\x01\n" +
 	"\x04Room\x12\x12\n" +
-	"\x04type\x18\x01 \x01(\tR\x04type\x12\x16\n" +
-	"\x06roomid\x18\x02 \x01(\tR\x06roomid\x12\x1a\n" +
-	"\broomname\x18\x03 \x01(\tR\broomname\x12\x1d\n" +
-	"\x03mod\x18\x04 \x01(\v2\v.engine.ModR\x03mod\x12\x1e\n" +
+	"\x04Type\x18\x01 \x01(\tR\x04Type\x12\x16\n" +
+	"\x06Roomid\x18\x02 \x01(\tR\x06Roomid\x12\x1a\n" +
+	"\bRoomname\x18\x03 \x01(\tR\bRoomname\x12\x1d\n" +
+	"\x03Mod\x18\x04 \x01(\v2\v.engine.ModR\x03Mod\x12\x1e\n" +
 	"\n" +
-	"gamestatus\x18\x05 \x01(\bR\n" +
-	"gamestatus\x12\x1c\n" +
-	"\tusercount\x18\x06 \x01(\x03R\tusercount\x120\n" +
-	"\tuserslist\x18\a \x03(\v2\x12.engine.PlayerInfoR\tuserslist\"\xc9\x01\n" +
+	"Gamestatus\x18\x05 \x01(\bR\n" +
+	"Gamestatus\x12\x1c\n" +
+	"\tUsercount\x18\x06 \x01(\x03R\tUsercount\x12*\n" +
+	"\tUserslist\x18\a \x03(\v2\f.engine.UserR\tUserslist\"\xc9\x01\n" +
 	"\x03Mod\x12\x18\n" +
-	"\aplayers\x18\x01 \x01(\x03R\aplayers\x12\x1a\n" +
-	"\bdecksize\x18\x02 \x01(\x03R\bdecksize\x12\x14\n" +
-	"\x05stake\x18\x03 \x01(\x03R\x05stake\x12\x14\n" +
-	"\x05speed\x18\x04 \x01(\bR\x05speed\x12\x18\n" +
-	"\apassing\x18\x05 \x01(\bR\apassing\x12\x14\n" +
-	"\x05throw\x18\x06 \x01(\bR\x05throw\x12\x16\n" +
-	"\x06tricks\x18\a \x01(\bR\x06tricks\x12\x18\n" +
-	"\aprivate\x18\b \x01(\bR\aprivate\"\xd4\x02\n" +
-	"\n" +
-	"PlayerInfo\x12 \n" +
-	"\vauthdateraw\x18\x01 \x01(\x03R\vauthdateraw\x12(\n" +
-	"\x0fcansendsfterraw\x18\x02 \x01(\x03R\x0fcansendsfterraw\x12 \n" +
-	"\x04chat\x18\x03 \x01(\v2\f.engine.ChatR\x04chat\x12\x1a\n" +
-	"\bchattype\x18\x04 \x01(\tR\bchattype\x12\"\n" +
-	"\fchatinstance\x18\x05 \x01(\x03R\fchatinstance\x12\x12\n" +
-	"\x04hash\x18\x06 \x01(\tR\x04hash\x12\x18\n" +
-	"\aqueryid\x18\a \x01(\tR\aqueryid\x12(\n" +
-	"\breceiver\x18\b \x01(\v2\f.engine.UserR\breceiver\x12\x1e\n" +
-	"\n" +
-	"startparam\x18\t \x01(\tR\n" +
-	"startparam\x12 \n" +
-	"\x04user\x18\n" +
-	" \x01(\v2\f.engine.UserR\x04user\"x\n" +
-	"\x04Chat\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04type\x18\x02 \x01(\tR\x04type\x12\x14\n" +
-	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1a\n" +
-	"\bphotourl\x18\x04 \x01(\tR\bphotourl\x12\x1a\n" +
-	"\busername\x18\x05 \x01(\tR\busername\"\xc0\x02\n" +
+	"\aPlayers\x18\x01 \x01(\x03R\aPlayers\x12\x1a\n" +
+	"\bDecksize\x18\x02 \x01(\x03R\bDecksize\x12\x14\n" +
+	"\x05Stake\x18\x03 \x01(\x03R\x05Stake\x12\x14\n" +
+	"\x05Speed\x18\x04 \x01(\bR\x05Speed\x12\x18\n" +
+	"\aPassing\x18\x05 \x01(\bR\aPassing\x12\x14\n" +
+	"\x05Throw\x18\x06 \x01(\bR\x05Throw\x12\x16\n" +
+	"\x06Tricks\x18\a \x01(\bR\x06Tricks\x12\x18\n" +
+	"\aPrivate\x18\b \x01(\bR\aPrivate\"\xc0\x02\n" +
 	"\x04User\x124\n" +
-	"\x15addedtoattachmentmenu\x18\x01 \x01(\bR\x15addedtoattachmentmenu\x12(\n" +
-	"\x0fallowswritetopm\x18\x02 \x01(\bR\x0fallowswritetopm\x12\x1c\n" +
-	"\tfirstname\x18\x03 \x01(\tR\tfirstname\x12\x0e\n" +
-	"\x02id\x18\x04 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05isbot\x18\x05 \x01(\bR\x05isbot\x12\x1c\n" +
-	"\tispremium\x18\x06 \x01(\bR\tispremium\x12\x1a\n" +
-	"\blastname\x18\a \x01(\tR\blastname\x12\x1a\n" +
-	"\busername\x18\b \x01(\tR\busername\x12\"\n" +
-	"\flanguagecode\x18\t \x01(\tR\flanguagecode\x12\x1a\n" +
-	"\bphotourl\x18\n" +
-	" \x01(\tR\bphotourl2\x8c\x01\n" +
+	"\x15Addedtoattachmentmenu\x18\x01 \x01(\bR\x15Addedtoattachmentmenu\x12(\n" +
+	"\x0fAllowswritetopm\x18\x02 \x01(\bR\x0fAllowswritetopm\x12\x1c\n" +
+	"\tFirstname\x18\x03 \x01(\tR\tFirstname\x12\x0e\n" +
+	"\x02Id\x18\x04 \x01(\x03R\x02Id\x12\x14\n" +
+	"\x05Isbot\x18\x05 \x01(\bR\x05Isbot\x12\x1c\n" +
+	"\tIspremium\x18\x06 \x01(\bR\tIspremium\x12\x1a\n" +
+	"\bLastname\x18\a \x01(\tR\bLastname\x12\x1a\n" +
+	"\bUsername\x18\b \x01(\tR\bUsername\x12\"\n" +
+	"\fLanguagecode\x18\t \x01(\tR\fLanguagecode\x12\x1a\n" +
+	"\bPhotourl\x18\n" +
+	" \x01(\tR\bPhotourl2\x8c\x01\n" +
 	"\x06Engine\x12@\n" +
 	"\tWedSocket\x12\x18.engine.WedSocketRequest\x1a\x19.engine.WedSocketResponse\x12@\n" +
 	"\tLobbyList\x12\x18.engine.LobbyListRequest\x1a\x19.engine.LobbyListResponseB\x1aZ\x18sirius.engine.v1;engine1b\x06proto3"
@@ -815,7 +611,7 @@ func file_engine_engine_proto_rawDescGZIP() []byte {
 	return file_engine_engine_proto_rawDescData
 }
 
-var file_engine_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_engine_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_engine_engine_proto_goTypes = []any{
 	(*WedSocketRequest)(nil),  // 0: engine.WedSocketRequest
 	(*WedSocketResponse)(nil), // 1: engine.WedSocketResponse
@@ -823,28 +619,24 @@ var file_engine_engine_proto_goTypes = []any{
 	(*LobbyListResponse)(nil), // 3: engine.LobbyListResponse
 	(*Room)(nil),              // 4: engine.Room
 	(*Mod)(nil),               // 5: engine.Mod
-	(*PlayerInfo)(nil),        // 6: engine.PlayerInfo
-	(*Chat)(nil),              // 7: engine.Chat
-	(*User)(nil),              // 8: engine.User
+	(*User)(nil),              // 6: engine.User
 }
 var file_engine_engine_proto_depIdxs = []int32{
-	8,  // 0: engine.WedSocketRequest.User:type_name -> engine.User
-	5,  // 1: engine.LobbyListRequest.mod:type_name -> engine.Mod
-	4,  // 2: engine.LobbyListResponse.rooms:type_name -> engine.Room
-	5,  // 3: engine.Room.mod:type_name -> engine.Mod
-	6,  // 4: engine.Room.userslist:type_name -> engine.PlayerInfo
-	7,  // 5: engine.PlayerInfo.chat:type_name -> engine.Chat
-	8,  // 6: engine.PlayerInfo.receiver:type_name -> engine.User
-	8,  // 7: engine.PlayerInfo.user:type_name -> engine.User
-	0,  // 8: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
-	2,  // 9: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
-	1,  // 10: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
-	3,  // 11: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
-	10, // [10:12] is the sub-list for method output_type
-	8,  // [8:10] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	6, // 0: engine.WedSocketRequest.User:type_name -> engine.User
+	4, // 1: engine.WedSocketResponse.Room:type_name -> engine.Room
+	5, // 2: engine.LobbyListRequest.Mod:type_name -> engine.Mod
+	4, // 3: engine.LobbyListResponse.Rooms:type_name -> engine.Room
+	5, // 4: engine.Room.Mod:type_name -> engine.Mod
+	6, // 5: engine.Room.Userslist:type_name -> engine.User
+	0, // 6: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
+	2, // 7: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
+	1, // 8: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
+	3, // 9: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
+	8, // [8:10] is the sub-list for method output_type
+	6, // [6:8] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_engine_engine_proto_init() }
@@ -858,7 +650,7 @@ func file_engine_engine_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_engine_engine_proto_rawDesc), len(file_engine_engine_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
