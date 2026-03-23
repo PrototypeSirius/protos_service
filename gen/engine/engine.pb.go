@@ -21,29 +21,36 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type WedSocketRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *User                  `protobuf:"bytes,1,opt,name=User,proto3" json:"User,omitempty"`
-	Action        string                 `protobuf:"bytes,2,opt,name=Action,proto3" json:"Action,omitempty"`
-	Payload       []byte                 `protobuf:"bytes,3,opt,name=Payload,proto3" json:"Payload,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+type User struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	Addedtoattachmentmenu bool                   `protobuf:"varint,1,opt,name=addedtoattachmentmenu,proto3" json:"addedtoattachmentmenu,omitempty"`
+	Allowswritetopm       bool                   `protobuf:"varint,2,opt,name=allowswritetopm,proto3" json:"allowswritetopm,omitempty"`
+	Firstname             string                 `protobuf:"bytes,3,opt,name=firstname,proto3" json:"firstname,omitempty"`
+	Id                    int64                  `protobuf:"varint,4,opt,name=id,proto3" json:"id,omitempty"`
+	Isbot                 bool                   `protobuf:"varint,5,opt,name=isbot,proto3" json:"isbot,omitempty"`
+	Ispremium             bool                   `protobuf:"varint,6,opt,name=ispremium,proto3" json:"ispremium,omitempty"`
+	Lastname              string                 `protobuf:"bytes,7,opt,name=lastname,proto3" json:"lastname,omitempty"`
+	Username              string                 `protobuf:"bytes,8,opt,name=username,proto3" json:"username,omitempty"`
+	Languagecode          string                 `protobuf:"bytes,9,opt,name=languagecode,proto3" json:"languagecode,omitempty"`
+	Photourl              string                 `protobuf:"bytes,10,opt,name=photourl,proto3" json:"photourl,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
-func (x *WedSocketRequest) Reset() {
-	*x = WedSocketRequest{}
+func (x *User) Reset() {
+	*x = User{}
 	mi := &file_engine_engine_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *WedSocketRequest) String() string {
+func (x *User) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*WedSocketRequest) ProtoMessage() {}
+func (*User) ProtoMessage() {}
 
-func (x *WedSocketRequest) ProtoReflect() protoreflect.Message {
+func (x *User) ProtoReflect() protoreflect.Message {
 	mi := &file_engine_engine_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,55 +62,109 @@ func (x *WedSocketRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use WedSocketRequest.ProtoReflect.Descriptor instead.
-func (*WedSocketRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
 	return file_engine_engine_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *WedSocketRequest) GetUser() *User {
+func (x *User) GetAddedtoattachmentmenu() bool {
 	if x != nil {
-		return x.User
+		return x.Addedtoattachmentmenu
 	}
-	return nil
+	return false
 }
 
-func (x *WedSocketRequest) GetAction() string {
+func (x *User) GetAllowswritetopm() bool {
 	if x != nil {
-		return x.Action
+		return x.Allowswritetopm
+	}
+	return false
+}
+
+func (x *User) GetFirstname() string {
+	if x != nil {
+		return x.Firstname
 	}
 	return ""
 }
 
-func (x *WedSocketRequest) GetPayload() []byte {
+func (x *User) GetId() int64 {
 	if x != nil {
-		return x.Payload
+		return x.Id
 	}
-	return nil
+	return 0
 }
 
-type WedSocketResponse struct {
+func (x *User) GetIsbot() bool {
+	if x != nil {
+		return x.Isbot
+	}
+	return false
+}
+
+func (x *User) GetIspremium() bool {
+	if x != nil {
+		return x.Ispremium
+	}
+	return false
+}
+
+func (x *User) GetLastname() string {
+	if x != nil {
+		return x.Lastname
+	}
+	return ""
+}
+
+func (x *User) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *User) GetLanguagecode() string {
+	if x != nil {
+		return x.Languagecode
+	}
+	return ""
+}
+
+func (x *User) GetPhotourl() string {
+	if x != nil {
+		return x.Photourl
+	}
+	return ""
+}
+
+type Mod struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventType     string                 `protobuf:"bytes,1,opt,name=Event_type,json=EventType,proto3" json:"Event_type,omitempty"`
-	Room          *Room                  `protobuf:"bytes,2,opt,name=Room,proto3" json:"Room,omitempty"`
-	Payload       []byte                 `protobuf:"bytes,3,opt,name=Payload,proto3" json:"Payload,omitempty"`
+	Players       int64                  `protobuf:"varint,1,opt,name=players,proto3" json:"players,omitempty"`
+	Decksize      int64                  `protobuf:"varint,2,opt,name=decksize,proto3" json:"decksize,omitempty"`
+	Stake         int64                  `protobuf:"varint,3,opt,name=stake,proto3" json:"stake,omitempty"`
+	Speed         bool                   `protobuf:"varint,4,opt,name=speed,proto3" json:"speed,omitempty"`
+	Passing       bool                   `protobuf:"varint,5,opt,name=passing,proto3" json:"passing,omitempty"`
+	Throw         bool                   `protobuf:"varint,6,opt,name=throw,proto3" json:"throw,omitempty"`
+	Tricks        bool                   `protobuf:"varint,7,opt,name=tricks,proto3" json:"tricks,omitempty"`
+	Private       bool                   `protobuf:"varint,8,opt,name=private,proto3" json:"private,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *WedSocketResponse) Reset() {
-	*x = WedSocketResponse{}
+func (x *Mod) Reset() {
+	*x = Mod{}
 	mi := &file_engine_engine_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *WedSocketResponse) String() string {
+func (x *Mod) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*WedSocketResponse) ProtoMessage() {}
+func (*Mod) ProtoMessage() {}
 
-func (x *WedSocketResponse) ProtoReflect() protoreflect.Message {
+func (x *Mod) ProtoReflect() protoreflect.Message {
 	mi := &file_engine_engine_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -115,56 +176,93 @@ func (x *WedSocketResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use WedSocketResponse.ProtoReflect.Descriptor instead.
-func (*WedSocketResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use Mod.ProtoReflect.Descriptor instead.
+func (*Mod) Descriptor() ([]byte, []int) {
 	return file_engine_engine_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *WedSocketResponse) GetEventType() string {
+func (x *Mod) GetPlayers() int64 {
 	if x != nil {
-		return x.EventType
+		return x.Players
 	}
-	return ""
+	return 0
 }
 
-func (x *WedSocketResponse) GetRoom() *Room {
+func (x *Mod) GetDecksize() int64 {
 	if x != nil {
-		return x.Room
+		return x.Decksize
 	}
-	return nil
+	return 0
 }
 
-func (x *WedSocketResponse) GetPayload() []byte {
+func (x *Mod) GetStake() int64 {
 	if x != nil {
-		return x.Payload
+		return x.Stake
 	}
-	return nil
+	return 0
 }
 
-type LobbyListRequest struct {
+func (x *Mod) GetSpeed() bool {
+	if x != nil {
+		return x.Speed
+	}
+	return false
+}
+
+func (x *Mod) GetPassing() bool {
+	if x != nil {
+		return x.Passing
+	}
+	return false
+}
+
+func (x *Mod) GetThrow() bool {
+	if x != nil {
+		return x.Throw
+	}
+	return false
+}
+
+func (x *Mod) GetTricks() bool {
+	if x != nil {
+		return x.Tricks
+	}
+	return false
+}
+
+func (x *Mod) GetPrivate() bool {
+	if x != nil {
+		return x.Private
+	}
+	return false
+}
+
+type Room struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int64                  `protobuf:"varint,1,opt,name=Page,proto3" json:"Page,omitempty"`
-	SizePage      int64                  `protobuf:"varint,2,opt,name=SizePage,proto3" json:"SizePage,omitempty"`
-	SearchMod     *SearchMod             `protobuf:"bytes,3,opt,name=SearchMod,proto3" json:"SearchMod,omitempty"`
-	ParmsMod      *SearchParms           `protobuf:"bytes,4,opt,name=ParmsMod,proto3" json:"ParmsMod,omitempty"`
+	Roomid        string                 `protobuf:"bytes,1,opt,name=roomid,proto3" json:"roomid,omitempty"`
+	Mod           *Mod                   `protobuf:"bytes,2,opt,name=mod,proto3" json:"mod,omitempty"`
+	Open          bool                   `protobuf:"varint,3,opt,name=open,proto3" json:"open,omitempty"`
+	Start         bool                   `protobuf:"varint,4,opt,name=start,proto3" json:"start,omitempty"`
+	Usercount     int64                  `protobuf:"varint,5,opt,name=usercount,proto3" json:"usercount,omitempty"`
+	Userslist     []*User                `protobuf:"bytes,6,rep,name=userslist,proto3" json:"userslist,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LobbyListRequest) Reset() {
-	*x = LobbyListRequest{}
+func (x *Room) Reset() {
+	*x = Room{}
 	mi := &file_engine_engine_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LobbyListRequest) String() string {
+func (x *Room) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LobbyListRequest) ProtoMessage() {}
+func (*Room) ProtoMessage() {}
 
-func (x *LobbyListRequest) ProtoReflect() protoreflect.Message {
+func (x *Room) ProtoReflect() protoreflect.Message {
 	mi := &file_engine_engine_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -176,48 +274,62 @@ func (x *LobbyListRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LobbyListRequest.ProtoReflect.Descriptor instead.
-func (*LobbyListRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Room.ProtoReflect.Descriptor instead.
+func (*Room) Descriptor() ([]byte, []int) {
 	return file_engine_engine_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *LobbyListRequest) GetPage() int64 {
+func (x *Room) GetRoomid() string {
 	if x != nil {
-		return x.Page
+		return x.Roomid
 	}
-	return 0
+	return ""
 }
 
-func (x *LobbyListRequest) GetSizePage() int64 {
+func (x *Room) GetMod() *Mod {
 	if x != nil {
-		return x.SizePage
-	}
-	return 0
-}
-
-func (x *LobbyListRequest) GetSearchMod() *SearchMod {
-	if x != nil {
-		return x.SearchMod
+		return x.Mod
 	}
 	return nil
 }
 
-func (x *LobbyListRequest) GetParmsMod() *SearchParms {
+func (x *Room) GetOpen() bool {
 	if x != nil {
-		return x.ParmsMod
+		return x.Open
+	}
+	return false
+}
+
+func (x *Room) GetStart() bool {
+	if x != nil {
+		return x.Start
+	}
+	return false
+}
+
+func (x *Room) GetUsercount() int64 {
+	if x != nil {
+		return x.Usercount
+	}
+	return 0
+}
+
+func (x *Room) GetUserslist() []*User {
+	if x != nil {
+		return x.Userslist
 	}
 	return nil
 }
 
 type SearchMod struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MaxPlayers    bool                   `protobuf:"varint,1,opt,name=MaxPlayers,proto3" json:"MaxPlayers,omitempty"`
-	DeckSize      bool                   `protobuf:"varint,2,opt,name=DeckSize,proto3" json:"DeckSize,omitempty"`
-	SpeedMod      bool                   `protobuf:"varint,3,opt,name=SpeedMod,proto3" json:"SpeedMod,omitempty"`
-	ThrowMod      bool                   `protobuf:"varint,4,opt,name=ThrowMod,proto3" json:"ThrowMod,omitempty"`
-	PassingMod    bool                   `protobuf:"varint,5,opt,name=PassingMod,proto3" json:"PassingMod,omitempty"`
-	TricksMod     bool                   `protobuf:"varint,6,opt,name=TricksMod,proto3" json:"TricksMod,omitempty"`
-	Stake         bool                   `protobuf:"varint,7,opt,name=Stake,proto3" json:"Stake,omitempty"`
+	MaxPlayers    bool                   `protobuf:"varint,1,opt,name=max_players,json=maxPlayers,proto3" json:"max_players,omitempty"`
+	DeckSize      bool                   `protobuf:"varint,2,opt,name=deck_size,json=deckSize,proto3" json:"deck_size,omitempty"`
+	SpeedMod      bool                   `protobuf:"varint,3,opt,name=speed_mod,json=speedMod,proto3" json:"speed_mod,omitempty"`
+	ThrowMod      bool                   `protobuf:"varint,4,opt,name=throw_mod,json=throwMod,proto3" json:"throw_mod,omitempty"`
+	PassingMod    bool                   `protobuf:"varint,5,opt,name=passing_mod,json=passingMod,proto3" json:"passing_mod,omitempty"`
+	TricksMod     bool                   `protobuf:"varint,6,opt,name=tricks_mod,json=tricksMod,proto3" json:"tricks_mod,omitempty"`
+	Stake         bool                   `protobuf:"varint,7,opt,name=stake,proto3" json:"stake,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -303,13 +415,13 @@ func (x *SearchMod) GetStake() bool {
 
 type SearchParms struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MaxPlayers    int64                  `protobuf:"varint,1,opt,name=MaxPlayers,proto3" json:"MaxPlayers,omitempty"`
-	DeckSize      int64                  `protobuf:"varint,2,opt,name=DeckSize,proto3" json:"DeckSize,omitempty"`
-	SpeedMod      bool                   `protobuf:"varint,3,opt,name=SpeedMod,proto3" json:"SpeedMod,omitempty"`
-	ThrowMod      bool                   `protobuf:"varint,4,opt,name=ThrowMod,proto3" json:"ThrowMod,omitempty"`
-	PassingMod    bool                   `protobuf:"varint,5,opt,name=PassingMod,proto3" json:"PassingMod,omitempty"`
-	TricksMod     bool                   `protobuf:"varint,6,opt,name=TricksMod,proto3" json:"TricksMod,omitempty"`
-	Stake         []int64                `protobuf:"varint,7,rep,packed,name=Stake,proto3" json:"Stake,omitempty"`
+	MaxPlayers    int64                  `protobuf:"varint,1,opt,name=max_players,json=maxPlayers,proto3" json:"max_players,omitempty"`
+	DeckSize      int64                  `protobuf:"varint,2,opt,name=deck_size,json=deckSize,proto3" json:"deck_size,omitempty"`
+	SpeedMod      bool                   `protobuf:"varint,3,opt,name=speed_mod,json=speedMod,proto3" json:"speed_mod,omitempty"`
+	ThrowMod      bool                   `protobuf:"varint,4,opt,name=throw_mod,json=throwMod,proto3" json:"throw_mod,omitempty"`
+	PassingMod    bool                   `protobuf:"varint,5,opt,name=passing_mod,json=passingMod,proto3" json:"passing_mod,omitempty"`
+	TricksMod     bool                   `protobuf:"varint,6,opt,name=tricks_mod,json=tricksMod,proto3" json:"tricks_mod,omitempty"`
+	Stake         []int64                `protobuf:"varint,7,rep,packed,name=stake,proto3" json:"stake,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -393,17 +505,205 @@ func (x *SearchParms) GetStake() []int64 {
 	return nil
 }
 
+type WedSocketRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Action        string                 `protobuf:"bytes,2,opt,name=action,proto3" json:"action,omitempty"`
+	Payload       []byte                 `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WedSocketRequest) Reset() {
+	*x = WedSocketRequest{}
+	mi := &file_engine_engine_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WedSocketRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WedSocketRequest) ProtoMessage() {}
+
+func (x *WedSocketRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_engine_engine_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WedSocketRequest.ProtoReflect.Descriptor instead.
+func (*WedSocketRequest) Descriptor() ([]byte, []int) {
+	return file_engine_engine_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *WedSocketRequest) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *WedSocketRequest) GetAction() string {
+	if x != nil {
+		return x.Action
+	}
+	return ""
+}
+
+func (x *WedSocketRequest) GetPayload() []byte {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+type WedSocketResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventType     string                 `protobuf:"bytes,1,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	Room          *Room                  `protobuf:"bytes,2,opt,name=room,proto3" json:"room,omitempty"`
+	Payload       []byte                 `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WedSocketResponse) Reset() {
+	*x = WedSocketResponse{}
+	mi := &file_engine_engine_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WedSocketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WedSocketResponse) ProtoMessage() {}
+
+func (x *WedSocketResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_engine_engine_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WedSocketResponse.ProtoReflect.Descriptor instead.
+func (*WedSocketResponse) Descriptor() ([]byte, []int) {
+	return file_engine_engine_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *WedSocketResponse) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *WedSocketResponse) GetRoom() *Room {
+	if x != nil {
+		return x.Room
+	}
+	return nil
+}
+
+func (x *WedSocketResponse) GetPayload() []byte {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+type LobbyListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	SizePage      int64                  `protobuf:"varint,2,opt,name=size_page,json=sizePage,proto3" json:"size_page,omitempty"`
+	SearchMod     *SearchMod             `protobuf:"bytes,3,opt,name=search_mod,json=searchMod,proto3" json:"search_mod,omitempty"`
+	ParmsMod      *SearchParms           `protobuf:"bytes,4,opt,name=parms_mod,json=parmsMod,proto3" json:"parms_mod,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LobbyListRequest) Reset() {
+	*x = LobbyListRequest{}
+	mi := &file_engine_engine_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LobbyListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LobbyListRequest) ProtoMessage() {}
+
+func (x *LobbyListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_engine_engine_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LobbyListRequest.ProtoReflect.Descriptor instead.
+func (*LobbyListRequest) Descriptor() ([]byte, []int) {
+	return file_engine_engine_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *LobbyListRequest) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *LobbyListRequest) GetSizePage() int64 {
+	if x != nil {
+		return x.SizePage
+	}
+	return 0
+}
+
+func (x *LobbyListRequest) GetSearchMod() *SearchMod {
+	if x != nil {
+		return x.SearchMod
+	}
+	return nil
+}
+
+func (x *LobbyListRequest) GetParmsMod() *SearchParms {
+	if x != nil {
+		return x.ParmsMod
+	}
+	return nil
+}
+
 type LobbyListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pages         int64                  `protobuf:"varint,1,opt,name=Pages,proto3" json:"Pages,omitempty"`
-	Rooms         []*Room                `protobuf:"bytes,2,rep,name=Rooms,proto3" json:"Rooms,omitempty"`
+	Pages         int64                  `protobuf:"varint,1,opt,name=pages,proto3" json:"pages,omitempty"`
+	Rooms         []*Room                `protobuf:"bytes,2,rep,name=rooms,proto3" json:"rooms,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LobbyListResponse) Reset() {
 	*x = LobbyListResponse{}
-	mi := &file_engine_engine_proto_msgTypes[5]
+	mi := &file_engine_engine_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -415,7 +715,7 @@ func (x *LobbyListResponse) String() string {
 func (*LobbyListResponse) ProtoMessage() {}
 
 func (x *LobbyListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[5]
+	mi := &file_engine_engine_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +728,7 @@ func (x *LobbyListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbyListResponse.ProtoReflect.Descriptor instead.
 func (*LobbyListResponse) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{5}
+	return file_engine_engine_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *LobbyListResponse) GetPages() int64 {
@@ -443,298 +743,6 @@ func (x *LobbyListResponse) GetRooms() []*Room {
 		return x.Rooms
 	}
 	return nil
-}
-
-type Room struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Roomid        string                 `protobuf:"bytes,1,opt,name=Roomid,proto3" json:"Roomid,omitempty"`
-	Mod           *Mod                   `protobuf:"bytes,2,opt,name=Mod,proto3" json:"Mod,omitempty"`
-	Open          bool                   `protobuf:"varint,3,opt,name=Open,proto3" json:"Open,omitempty"`
-	Usercount     int64                  `protobuf:"varint,4,opt,name=Usercount,proto3" json:"Usercount,omitempty"`
-	Userslist     []*User                `protobuf:"bytes,5,rep,name=Userslist,proto3" json:"Userslist,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Room) Reset() {
-	*x = Room{}
-	mi := &file_engine_engine_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Room) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Room) ProtoMessage() {}
-
-func (x *Room) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Room.ProtoReflect.Descriptor instead.
-func (*Room) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *Room) GetRoomid() string {
-	if x != nil {
-		return x.Roomid
-	}
-	return ""
-}
-
-func (x *Room) GetMod() *Mod {
-	if x != nil {
-		return x.Mod
-	}
-	return nil
-}
-
-func (x *Room) GetOpen() bool {
-	if x != nil {
-		return x.Open
-	}
-	return false
-}
-
-func (x *Room) GetUsercount() int64 {
-	if x != nil {
-		return x.Usercount
-	}
-	return 0
-}
-
-func (x *Room) GetUserslist() []*User {
-	if x != nil {
-		return x.Userslist
-	}
-	return nil
-}
-
-type Mod struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Players       int64                  `protobuf:"varint,1,opt,name=Players,proto3" json:"Players,omitempty"`
-	Decksize      int64                  `protobuf:"varint,2,opt,name=Decksize,proto3" json:"Decksize,omitempty"`
-	Stake         int64                  `protobuf:"varint,3,opt,name=Stake,proto3" json:"Stake,omitempty"`
-	Speed         bool                   `protobuf:"varint,4,opt,name=Speed,proto3" json:"Speed,omitempty"`
-	Passing       bool                   `protobuf:"varint,5,opt,name=Passing,proto3" json:"Passing,omitempty"`
-	Throw         bool                   `protobuf:"varint,6,opt,name=Throw,proto3" json:"Throw,omitempty"`
-	Tricks        bool                   `protobuf:"varint,7,opt,name=Tricks,proto3" json:"Tricks,omitempty"`
-	Private       bool                   `protobuf:"varint,8,opt,name=Private,proto3" json:"Private,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Mod) Reset() {
-	*x = Mod{}
-	mi := &file_engine_engine_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Mod) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Mod) ProtoMessage() {}
-
-func (x *Mod) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Mod.ProtoReflect.Descriptor instead.
-func (*Mod) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Mod) GetPlayers() int64 {
-	if x != nil {
-		return x.Players
-	}
-	return 0
-}
-
-func (x *Mod) GetDecksize() int64 {
-	if x != nil {
-		return x.Decksize
-	}
-	return 0
-}
-
-func (x *Mod) GetStake() int64 {
-	if x != nil {
-		return x.Stake
-	}
-	return 0
-}
-
-func (x *Mod) GetSpeed() bool {
-	if x != nil {
-		return x.Speed
-	}
-	return false
-}
-
-func (x *Mod) GetPassing() bool {
-	if x != nil {
-		return x.Passing
-	}
-	return false
-}
-
-func (x *Mod) GetThrow() bool {
-	if x != nil {
-		return x.Throw
-	}
-	return false
-}
-
-func (x *Mod) GetTricks() bool {
-	if x != nil {
-		return x.Tricks
-	}
-	return false
-}
-
-func (x *Mod) GetPrivate() bool {
-	if x != nil {
-		return x.Private
-	}
-	return false
-}
-
-type User struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Addedtoattachmentmenu bool                   `protobuf:"varint,1,opt,name=Addedtoattachmentmenu,proto3" json:"Addedtoattachmentmenu,omitempty"`
-	Allowswritetopm       bool                   `protobuf:"varint,2,opt,name=Allowswritetopm,proto3" json:"Allowswritetopm,omitempty"`
-	Firstname             string                 `protobuf:"bytes,3,opt,name=Firstname,proto3" json:"Firstname,omitempty"`
-	Id                    int64                  `protobuf:"varint,4,opt,name=Id,proto3" json:"Id,omitempty"`
-	Isbot                 bool                   `protobuf:"varint,5,opt,name=Isbot,proto3" json:"Isbot,omitempty"`
-	Ispremium             bool                   `protobuf:"varint,6,opt,name=Ispremium,proto3" json:"Ispremium,omitempty"`
-	Lastname              string                 `protobuf:"bytes,7,opt,name=Lastname,proto3" json:"Lastname,omitempty"`
-	Username              string                 `protobuf:"bytes,8,opt,name=Username,proto3" json:"Username,omitempty"`
-	Languagecode          string                 `protobuf:"bytes,9,opt,name=Languagecode,proto3" json:"Languagecode,omitempty"`
-	Photourl              string                 `protobuf:"bytes,10,opt,name=Photourl,proto3" json:"Photourl,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
-}
-
-func (x *User) Reset() {
-	*x = User{}
-	mi := &file_engine_engine_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *User) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*User) ProtoMessage() {}
-
-func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_engine_engine_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use User.ProtoReflect.Descriptor instead.
-func (*User) Descriptor() ([]byte, []int) {
-	return file_engine_engine_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *User) GetAddedtoattachmentmenu() bool {
-	if x != nil {
-		return x.Addedtoattachmentmenu
-	}
-	return false
-}
-
-func (x *User) GetAllowswritetopm() bool {
-	if x != nil {
-		return x.Allowswritetopm
-	}
-	return false
-}
-
-func (x *User) GetFirstname() string {
-	if x != nil {
-		return x.Firstname
-	}
-	return ""
-}
-
-func (x *User) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *User) GetIsbot() bool {
-	if x != nil {
-		return x.Isbot
-	}
-	return false
-}
-
-func (x *User) GetIspremium() bool {
-	if x != nil {
-		return x.Ispremium
-	}
-	return false
-}
-
-func (x *User) GetLastname() string {
-	if x != nil {
-		return x.Lastname
-	}
-	return ""
-}
-
-func (x *User) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *User) GetLanguagecode() string {
-	if x != nil {
-		return x.Languagecode
-	}
-	return ""
-}
-
-func (x *User) GetPhotourl() string {
-	if x != nil {
-		return x.Photourl
-	}
-	return ""
 }
 
 type SubscribeEventsRequest struct {
@@ -869,75 +877,75 @@ var File_engine_engine_proto protoreflect.FileDescriptor
 
 const file_engine_engine_proto_rawDesc = "" +
 	"\n" +
-	"\x13engine/engine.proto\x12\x06engine\"f\n" +
+	"\x13engine/engine.proto\x12\x06engine\"\xc0\x02\n" +
+	"\x04User\x124\n" +
+	"\x15addedtoattachmentmenu\x18\x01 \x01(\bR\x15addedtoattachmentmenu\x12(\n" +
+	"\x0fallowswritetopm\x18\x02 \x01(\bR\x0fallowswritetopm\x12\x1c\n" +
+	"\tfirstname\x18\x03 \x01(\tR\tfirstname\x12\x0e\n" +
+	"\x02id\x18\x04 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05isbot\x18\x05 \x01(\bR\x05isbot\x12\x1c\n" +
+	"\tispremium\x18\x06 \x01(\bR\tispremium\x12\x1a\n" +
+	"\blastname\x18\a \x01(\tR\blastname\x12\x1a\n" +
+	"\busername\x18\b \x01(\tR\busername\x12\"\n" +
+	"\flanguagecode\x18\t \x01(\tR\flanguagecode\x12\x1a\n" +
+	"\bphotourl\x18\n" +
+	" \x01(\tR\bphotourl\"\xc9\x01\n" +
+	"\x03Mod\x12\x18\n" +
+	"\aplayers\x18\x01 \x01(\x03R\aplayers\x12\x1a\n" +
+	"\bdecksize\x18\x02 \x01(\x03R\bdecksize\x12\x14\n" +
+	"\x05stake\x18\x03 \x01(\x03R\x05stake\x12\x14\n" +
+	"\x05speed\x18\x04 \x01(\bR\x05speed\x12\x18\n" +
+	"\apassing\x18\x05 \x01(\bR\apassing\x12\x14\n" +
+	"\x05throw\x18\x06 \x01(\bR\x05throw\x12\x16\n" +
+	"\x06tricks\x18\a \x01(\bR\x06tricks\x12\x18\n" +
+	"\aprivate\x18\b \x01(\bR\aprivate\"\xb1\x01\n" +
+	"\x04Room\x12\x16\n" +
+	"\x06roomid\x18\x01 \x01(\tR\x06roomid\x12\x1d\n" +
+	"\x03mod\x18\x02 \x01(\v2\v.engine.ModR\x03mod\x12\x12\n" +
+	"\x04open\x18\x03 \x01(\bR\x04open\x12\x14\n" +
+	"\x05start\x18\x04 \x01(\bR\x05start\x12\x1c\n" +
+	"\tusercount\x18\x05 \x01(\x03R\tusercount\x12*\n" +
+	"\tuserslist\x18\x06 \x03(\v2\f.engine.UserR\tuserslist\"\xd9\x01\n" +
+	"\tSearchMod\x12\x1f\n" +
+	"\vmax_players\x18\x01 \x01(\bR\n" +
+	"maxPlayers\x12\x1b\n" +
+	"\tdeck_size\x18\x02 \x01(\bR\bdeckSize\x12\x1b\n" +
+	"\tspeed_mod\x18\x03 \x01(\bR\bspeedMod\x12\x1b\n" +
+	"\tthrow_mod\x18\x04 \x01(\bR\bthrowMod\x12\x1f\n" +
+	"\vpassing_mod\x18\x05 \x01(\bR\n" +
+	"passingMod\x12\x1d\n" +
+	"\n" +
+	"tricks_mod\x18\x06 \x01(\bR\ttricksMod\x12\x14\n" +
+	"\x05stake\x18\a \x01(\bR\x05stake\"\xdb\x01\n" +
+	"\vSearchParms\x12\x1f\n" +
+	"\vmax_players\x18\x01 \x01(\x03R\n" +
+	"maxPlayers\x12\x1b\n" +
+	"\tdeck_size\x18\x02 \x01(\x03R\bdeckSize\x12\x1b\n" +
+	"\tspeed_mod\x18\x03 \x01(\bR\bspeedMod\x12\x1b\n" +
+	"\tthrow_mod\x18\x04 \x01(\bR\bthrowMod\x12\x1f\n" +
+	"\vpassing_mod\x18\x05 \x01(\bR\n" +
+	"passingMod\x12\x1d\n" +
+	"\n" +
+	"tricks_mod\x18\x06 \x01(\bR\ttricksMod\x12\x14\n" +
+	"\x05stake\x18\a \x03(\x03R\x05stake\"f\n" +
 	"\x10WedSocketRequest\x12 \n" +
-	"\x04User\x18\x01 \x01(\v2\f.engine.UserR\x04User\x12\x16\n" +
-	"\x06Action\x18\x02 \x01(\tR\x06Action\x12\x18\n" +
-	"\aPayload\x18\x03 \x01(\fR\aPayload\"n\n" +
+	"\x04user\x18\x01 \x01(\v2\f.engine.UserR\x04user\x12\x16\n" +
+	"\x06action\x18\x02 \x01(\tR\x06action\x12\x18\n" +
+	"\apayload\x18\x03 \x01(\fR\apayload\"n\n" +
 	"\x11WedSocketResponse\x12\x1d\n" +
 	"\n" +
-	"Event_type\x18\x01 \x01(\tR\tEventType\x12 \n" +
-	"\x04Room\x18\x02 \x01(\v2\f.engine.RoomR\x04Room\x12\x18\n" +
-	"\aPayload\x18\x03 \x01(\fR\aPayload\"\xa4\x01\n" +
+	"event_type\x18\x01 \x01(\tR\teventType\x12 \n" +
+	"\x04room\x18\x02 \x01(\v2\f.engine.RoomR\x04room\x12\x18\n" +
+	"\apayload\x18\x03 \x01(\fR\apayload\"\xa7\x01\n" +
 	"\x10LobbyListRequest\x12\x12\n" +
-	"\x04Page\x18\x01 \x01(\x03R\x04Page\x12\x1a\n" +
-	"\bSizePage\x18\x02 \x01(\x03R\bSizePage\x12/\n" +
-	"\tSearchMod\x18\x03 \x01(\v2\x11.engine.SearchModR\tSearchMod\x12/\n" +
-	"\bParmsMod\x18\x04 \x01(\v2\x13.engine.SearchParmsR\bParmsMod\"\xd3\x01\n" +
-	"\tSearchMod\x12\x1e\n" +
+	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x1b\n" +
+	"\tsize_page\x18\x02 \x01(\x03R\bsizePage\x120\n" +
 	"\n" +
-	"MaxPlayers\x18\x01 \x01(\bR\n" +
-	"MaxPlayers\x12\x1a\n" +
-	"\bDeckSize\x18\x02 \x01(\bR\bDeckSize\x12\x1a\n" +
-	"\bSpeedMod\x18\x03 \x01(\bR\bSpeedMod\x12\x1a\n" +
-	"\bThrowMod\x18\x04 \x01(\bR\bThrowMod\x12\x1e\n" +
-	"\n" +
-	"PassingMod\x18\x05 \x01(\bR\n" +
-	"PassingMod\x12\x1c\n" +
-	"\tTricksMod\x18\x06 \x01(\bR\tTricksMod\x12\x14\n" +
-	"\x05Stake\x18\a \x01(\bR\x05Stake\"\xd5\x01\n" +
-	"\vSearchParms\x12\x1e\n" +
-	"\n" +
-	"MaxPlayers\x18\x01 \x01(\x03R\n" +
-	"MaxPlayers\x12\x1a\n" +
-	"\bDeckSize\x18\x02 \x01(\x03R\bDeckSize\x12\x1a\n" +
-	"\bSpeedMod\x18\x03 \x01(\bR\bSpeedMod\x12\x1a\n" +
-	"\bThrowMod\x18\x04 \x01(\bR\bThrowMod\x12\x1e\n" +
-	"\n" +
-	"PassingMod\x18\x05 \x01(\bR\n" +
-	"PassingMod\x12\x1c\n" +
-	"\tTricksMod\x18\x06 \x01(\bR\tTricksMod\x12\x14\n" +
-	"\x05Stake\x18\a \x03(\x03R\x05Stake\"M\n" +
+	"search_mod\x18\x03 \x01(\v2\x11.engine.SearchModR\tsearchMod\x120\n" +
+	"\tparms_mod\x18\x04 \x01(\v2\x13.engine.SearchParmsR\bparmsMod\"M\n" +
 	"\x11LobbyListResponse\x12\x14\n" +
-	"\x05Pages\x18\x01 \x01(\x03R\x05Pages\x12\"\n" +
-	"\x05Rooms\x18\x02 \x03(\v2\f.engine.RoomR\x05Rooms\"\x9b\x01\n" +
-	"\x04Room\x12\x16\n" +
-	"\x06Roomid\x18\x01 \x01(\tR\x06Roomid\x12\x1d\n" +
-	"\x03Mod\x18\x02 \x01(\v2\v.engine.ModR\x03Mod\x12\x12\n" +
-	"\x04Open\x18\x03 \x01(\bR\x04Open\x12\x1c\n" +
-	"\tUsercount\x18\x04 \x01(\x03R\tUsercount\x12*\n" +
-	"\tUserslist\x18\x05 \x03(\v2\f.engine.UserR\tUserslist\"\xc9\x01\n" +
-	"\x03Mod\x12\x18\n" +
-	"\aPlayers\x18\x01 \x01(\x03R\aPlayers\x12\x1a\n" +
-	"\bDecksize\x18\x02 \x01(\x03R\bDecksize\x12\x14\n" +
-	"\x05Stake\x18\x03 \x01(\x03R\x05Stake\x12\x14\n" +
-	"\x05Speed\x18\x04 \x01(\bR\x05Speed\x12\x18\n" +
-	"\aPassing\x18\x05 \x01(\bR\aPassing\x12\x14\n" +
-	"\x05Throw\x18\x06 \x01(\bR\x05Throw\x12\x16\n" +
-	"\x06Tricks\x18\a \x01(\bR\x06Tricks\x12\x18\n" +
-	"\aPrivate\x18\b \x01(\bR\aPrivate\"\xc0\x02\n" +
-	"\x04User\x124\n" +
-	"\x15Addedtoattachmentmenu\x18\x01 \x01(\bR\x15Addedtoattachmentmenu\x12(\n" +
-	"\x0fAllowswritetopm\x18\x02 \x01(\bR\x0fAllowswritetopm\x12\x1c\n" +
-	"\tFirstname\x18\x03 \x01(\tR\tFirstname\x12\x0e\n" +
-	"\x02Id\x18\x04 \x01(\x03R\x02Id\x12\x14\n" +
-	"\x05Isbot\x18\x05 \x01(\bR\x05Isbot\x12\x1c\n" +
-	"\tIspremium\x18\x06 \x01(\bR\tIspremium\x12\x1a\n" +
-	"\bLastname\x18\a \x01(\tR\bLastname\x12\x1a\n" +
-	"\bUsername\x18\b \x01(\tR\bUsername\x12\"\n" +
-	"\fLanguagecode\x18\t \x01(\tR\fLanguagecode\x12\x1a\n" +
-	"\bPhotourl\x18\n" +
-	" \x01(\tR\bPhotourl\"\x18\n" +
+	"\x05pages\x18\x01 \x01(\x03R\x05pages\x12\"\n" +
+	"\x05rooms\x18\x02 \x03(\v2\f.engine.RoomR\x05rooms\"\x18\n" +
 	"\x16SubscribeEventsRequest\"\xd0\x01\n" +
 	"\n" +
 	"AsyncEvent\x12\x19\n" +
@@ -969,31 +977,31 @@ func file_engine_engine_proto_rawDescGZIP() []byte {
 
 var file_engine_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_engine_engine_proto_goTypes = []any{
-	(*WedSocketRequest)(nil),       // 0: engine.WedSocketRequest
-	(*WedSocketResponse)(nil),      // 1: engine.WedSocketResponse
-	(*LobbyListRequest)(nil),       // 2: engine.LobbyListRequest
+	(*User)(nil),                   // 0: engine.User
+	(*Mod)(nil),                    // 1: engine.Mod
+	(*Room)(nil),                   // 2: engine.Room
 	(*SearchMod)(nil),              // 3: engine.SearchMod
 	(*SearchParms)(nil),            // 4: engine.SearchParms
-	(*LobbyListResponse)(nil),      // 5: engine.LobbyListResponse
-	(*Room)(nil),                   // 6: engine.Room
-	(*Mod)(nil),                    // 7: engine.Mod
-	(*User)(nil),                   // 8: engine.User
+	(*WedSocketRequest)(nil),       // 5: engine.WedSocketRequest
+	(*WedSocketResponse)(nil),      // 6: engine.WedSocketResponse
+	(*LobbyListRequest)(nil),       // 7: engine.LobbyListRequest
+	(*LobbyListResponse)(nil),      // 8: engine.LobbyListResponse
 	(*SubscribeEventsRequest)(nil), // 9: engine.SubscribeEventsRequest
 	(*AsyncEvent)(nil),             // 10: engine.AsyncEvent
 }
 var file_engine_engine_proto_depIdxs = []int32{
-	8,  // 0: engine.WedSocketRequest.User:type_name -> engine.User
-	6,  // 1: engine.WedSocketResponse.Room:type_name -> engine.Room
-	3,  // 2: engine.LobbyListRequest.SearchMod:type_name -> engine.SearchMod
-	4,  // 3: engine.LobbyListRequest.ParmsMod:type_name -> engine.SearchParms
-	6,  // 4: engine.LobbyListResponse.Rooms:type_name -> engine.Room
-	7,  // 5: engine.Room.Mod:type_name -> engine.Mod
-	8,  // 6: engine.Room.Userslist:type_name -> engine.User
-	0,  // 7: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
-	2,  // 8: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
+	1,  // 0: engine.Room.mod:type_name -> engine.Mod
+	0,  // 1: engine.Room.userslist:type_name -> engine.User
+	0,  // 2: engine.WedSocketRequest.user:type_name -> engine.User
+	2,  // 3: engine.WedSocketResponse.room:type_name -> engine.Room
+	3,  // 4: engine.LobbyListRequest.search_mod:type_name -> engine.SearchMod
+	4,  // 5: engine.LobbyListRequest.parms_mod:type_name -> engine.SearchParms
+	2,  // 6: engine.LobbyListResponse.rooms:type_name -> engine.Room
+	5,  // 7: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
+	7,  // 8: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
 	9,  // 9: engine.Engine.SubscribeEvents:input_type -> engine.SubscribeEventsRequest
-	1,  // 10: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
-	5,  // 11: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
+	6,  // 10: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
+	8,  // 11: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
 	10, // 12: engine.Engine.SubscribeEvents:output_type -> engine.AsyncEvent
 	10, // [10:13] is the sub-list for method output_type
 	7,  // [7:10] is the sub-list for method input_type

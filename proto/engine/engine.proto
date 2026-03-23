@@ -3,85 +3,86 @@ package engine;
 option go_package = "sirius.engine.v1;engine1";
 
 service Engine {
-    rpc WedSocket (WedSocketRequest) returns (WedSocketResponse);
-    rpc LobbyList (LobbyListRequest) returns (LobbyListResponse);
-    rpc SubscribeEvents(SubscribeEventsRequest) returns (stream AsyncEvent);
-}
-
-message WedSocketRequest {
-    User User = 1;
-    string Action = 2;
-    bytes Payload = 3;
-}
-
-message WedSocketResponse {
-  string Event_type = 1;
-  Room Room = 2;
-  bytes Payload = 3;
-}
-
-message LobbyListRequest {
-    int64 Page = 1;
-    int64 SizePage = 2;
-    SearchMod SearchMod = 3;
-    SearchParms ParmsMod = 4;
-}
-
-message SearchMod {
-    bool MaxPlayers = 1;
-    bool DeckSize = 2;
-    bool SpeedMod = 3;
-    bool ThrowMod = 4;
-    bool PassingMod = 5;
-    bool TricksMod = 6;
-    bool Stake = 7;
-}
-
-message SearchParms {
-    int64 MaxPlayers = 1;
-    int64 DeckSize = 2;
-    bool SpeedMod = 3;
-    bool ThrowMod = 4;
-    bool PassingMod = 5;
-    bool TricksMod = 6;
-    repeated int64 Stake = 7;
-}
-
-message LobbyListResponse {
-    int64 Pages = 1;
-    repeated Room Rooms = 2;
-}
-
-message Room {
-    string Roomid = 1;
-    Mod Mod = 2;
-    bool Open = 3;
-    int64 Usercount = 4;
-    repeated User Userslist = 5;
-}
-
-message Mod {
-    int64 Players = 1;
-    int64 Decksize = 2;
-    int64 Stake = 3;
-    bool Speed = 4;
-    bool Passing = 5;
-    bool Throw = 6;
-    bool Tricks = 7;
-    bool Private = 8;
+  rpc WedSocket(WedSocketRequest) returns (WedSocketResponse);
+  rpc LobbyList(LobbyListRequest) returns (LobbyListResponse);
+  rpc SubscribeEvents(SubscribeEventsRequest) returns (stream AsyncEvent);
 }
 
 message User {
-    bool Addedtoattachmentmenu = 1;
-    bool Allowswritetopm = 2;
-    string Firstname = 3;
-    int64 Id = 4;
-    bool Isbot = 5;
-    bool Ispremium = 6;
-    string Lastname = 7;
-    string Username = 8;
-    string Languagecode = 9;
-    string Photourl = 10;
+  bool addedtoattachmentmenu = 1;
+  bool allowswritetopm = 2;
+  string firstname = 3;
+  int64 id = 4;
+  bool isbot = 5;
+  bool ispremium = 6;
+  string lastname = 7;
+  string username = 8;
+  string languagecode = 9;
+  string photourl = 10;
+}
+
+message Mod {
+  int64 players = 1;
+  int64 decksize = 2;
+  int64 stake = 3;
+  bool speed = 4;
+  bool passing = 5;
+  bool throw = 6;
+  bool tricks = 7;
+  bool private = 8;
+}
+
+message Room {
+  string roomid = 1;
+  Mod mod = 2;
+  bool open = 3;
+  bool start = 4;
+  int64 usercount = 5;
+  repeated User userslist = 6;
+}
+
+message SearchMod {
+  bool max_players = 1;
+  bool deck_size = 2;
+  bool speed_mod = 3;
+  bool throw_mod = 4;
+  bool passing_mod = 5;
+  bool tricks_mod = 6;
+  bool stake = 7;
+}
+
+message SearchParms {
+  int64 max_players = 1;
+  int64 deck_size = 2;
+  bool speed_mod = 3;
+  bool throw_mod = 4;
+  bool passing_mod = 5;
+  bool tricks_mod = 6;
+  repeated int64 stake = 7;
+}
+
+message WedSocketRequest {
+  User user = 1;
+  string action = 2;
+  bytes payload = 3;
+}
+
+message WedSocketResponse {
+  string event_type = 1;
+  Room room = 2;
+  bytes payload = 3;
+}
+
+message LobbyListRequest {
+  int64 page = 1;
+  int64 size_page = 2;
+  SearchMod search_mod = 3;
+  SearchParms parms_mod = 4;
+}
+
+message LobbyListResponse {
+  int64 pages = 1;
+  repeated Room rooms = 2;
 }
 
 message SubscribeEventsRequest {}
