@@ -1,0 +1,70 @@
+syntax = "proto3";
+package database;
+option go_package = "sirius.database.v1;database1";
+
+service Database {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc CheckUser (CheckUserRequest) returns (CheckUserResponse);
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+    rpc AddNewData (AddNewAnswerRequest) returns (AddNewAnswerResponse);
+    rpc RequestOldDatas (RequestOldAnswersRequest) returns (RequestOldAnswersResponse);
+    rpc RequestDeletedDatas (RequestDeletedAnswersRequest) returns (RequestDeletedAnswersResponse);
+}
+
+message CreateUserRequest {
+    string Flag = 1;
+    bytes Data = 2;
+}
+
+message CreateUserResponse {
+    string Message = 1;
+}
+
+message CheckUserRequest {
+    string Flag = 1;
+    bytes Data = 2;
+}
+
+message CheckUserResponse {
+    string Message = 1;
+    bytes Data = 2;
+}
+
+message DeleteUserRequest {
+    string Flag = 1;
+    bytes Data = 2;
+}
+
+message DeleteUserResponse {
+    string Message = 1;
+}
+
+message AddNewAnswerRequest {
+    string Flag = 1;
+    bytes Data = 2;
+}
+
+message AddNewAnswerResponse {
+    string Message = 1;
+}
+
+message RequestOldAnswersRequest {
+    int64 Quantity = 1;
+    string Flag = 2;
+    string UserID = 3;
+}
+
+message RequestOldAnswersResponse {
+    string Message = 1;
+    bytes Data = 2;
+}
+
+message RequestDeletedAnswersRequest {
+    string Flag = 1;
+    string UserID = 2;
+    bytes Data = 3;
+}
+
+message RequestDeletedAnswersResponse {
+    string Message = 1;
+}

@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Engine_WedSocket_FullMethodName = "/engine.Engine/WedSocket"
-	Engine_LobbyList_FullMethodName = "/engine.Engine/LobbyList"
+	Engine_WedSocket_FullMethodName       = "/engine.Engine/WedSocket"
+	Engine_LobbyList_FullMethodName       = "/engine.Engine/LobbyList"
+	Engine_SubscribeEvents_FullMethodName = "/engine.Engine/SubscribeEvents"
 )
 
 // EngineClient is the client API for Engine service.
@@ -29,6 +30,7 @@ const (
 type EngineClient interface {
 	WedSocket(ctx context.Context, in *WedSocketRequest, opts ...grpc.CallOption) (*WedSocketResponse, error)
 	LobbyList(ctx context.Context, in *LobbyListRequest, opts ...grpc.CallOption) (*LobbyListResponse, error)
+	SubscribeEvents(ctx context.Context, in *SubscribeEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AsyncEvent], error)
 }
 
 type engineClient struct {
@@ -59,12 +61,32 @@ func (c *engineClient) LobbyList(ctx context.Context, in *LobbyListRequest, opts
 	return out, nil
 }
 
+func (c *engineClient) SubscribeEvents(ctx context.Context, in *SubscribeEventsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AsyncEvent], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Engine_ServiceDesc.Streams[0], Engine_SubscribeEvents_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[SubscribeEventsRequest, AsyncEvent]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Engine_SubscribeEventsClient = grpc.ServerStreamingClient[AsyncEvent]
+
 // EngineServer is the server API for Engine service.
 // All implementations must embed UnimplementedEngineServer
 // for forward compatibility.
 type EngineServer interface {
 	WedSocket(context.Context, *WedSocketRequest) (*WedSocketResponse, error)
 	LobbyList(context.Context, *LobbyListRequest) (*LobbyListResponse, error)
+	SubscribeEvents(*SubscribeEventsRequest, grpc.ServerStreamingServer[AsyncEvent]) error
 	mustEmbedUnimplementedEngineServer()
 }
 
@@ -80,6 +102,9 @@ func (UnimplementedEngineServer) WedSocket(context.Context, *WedSocketRequest) (
 }
 func (UnimplementedEngineServer) LobbyList(context.Context, *LobbyListRequest) (*LobbyListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LobbyList not implemented")
+}
+func (UnimplementedEngineServer) SubscribeEvents(*SubscribeEventsRequest, grpc.ServerStreamingServer[AsyncEvent]) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeEvents not implemented")
 }
 func (UnimplementedEngineServer) mustEmbedUnimplementedEngineServer() {}
 func (UnimplementedEngineServer) testEmbeddedByValue()                {}
@@ -138,6 +163,17 @@ func _Engine_LobbyList_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Engine_SubscribeEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(SubscribeEventsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(EngineServer).SubscribeEvents(m, &grpc.GenericServerStream[SubscribeEventsRequest, AsyncEvent]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Engine_SubscribeEventsServer = grpc.ServerStreamingServer[AsyncEvent]
+
 // Engine_ServiceDesc is the grpc.ServiceDesc for Engine service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -154,6 +190,12 @@ var Engine_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Engine_LobbyList_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "SubscribeEvents",
+			Handler:       _Engine_SubscribeEvents_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "engine/engine.proto",
 }

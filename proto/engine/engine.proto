@@ -5,6 +5,7 @@ option go_package = "sirius.engine.v1;engine1";
 service Engine {
     rpc WedSocket (WedSocketRequest) returns (WedSocketResponse);
     rpc LobbyList (LobbyListRequest) returns (LobbyListResponse);
+    rpc SubscribeEvents(SubscribeEventsRequest) returns (stream AsyncEvent);
 }
 
 message WedSocketRequest {
@@ -83,3 +84,14 @@ message User {
     string Photourl = 10;
 }
 
+message SubscribeEventsRequest {}
+
+message AsyncEvent {
+  uint64 event_id = 1;
+  string room_id = 2;
+  string event_type = 3;
+  bool broadcast = 4;
+  repeated int64 targets = 5;
+  bytes payload = 6;
+  int64 created_at = 7;
+}

@@ -737,6 +737,134 @@ func (x *User) GetPhotourl() string {
 	return ""
 }
 
+type SubscribeEventsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SubscribeEventsRequest) Reset() {
+	*x = SubscribeEventsRequest{}
+	mi := &file_engine_engine_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SubscribeEventsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubscribeEventsRequest) ProtoMessage() {}
+
+func (x *SubscribeEventsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_engine_engine_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubscribeEventsRequest.ProtoReflect.Descriptor instead.
+func (*SubscribeEventsRequest) Descriptor() ([]byte, []int) {
+	return file_engine_engine_proto_rawDescGZIP(), []int{9}
+}
+
+type AsyncEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       uint64                 `protobuf:"varint,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	RoomId        string                 `protobuf:"bytes,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	EventType     string                 `protobuf:"bytes,3,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	Broadcast     bool                   `protobuf:"varint,4,opt,name=broadcast,proto3" json:"broadcast,omitempty"`
+	Targets       []int64                `protobuf:"varint,5,rep,packed,name=targets,proto3" json:"targets,omitempty"`
+	Payload       []byte                 `protobuf:"bytes,6,opt,name=payload,proto3" json:"payload,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AsyncEvent) Reset() {
+	*x = AsyncEvent{}
+	mi := &file_engine_engine_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AsyncEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AsyncEvent) ProtoMessage() {}
+
+func (x *AsyncEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_engine_engine_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AsyncEvent.ProtoReflect.Descriptor instead.
+func (*AsyncEvent) Descriptor() ([]byte, []int) {
+	return file_engine_engine_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *AsyncEvent) GetEventId() uint64 {
+	if x != nil {
+		return x.EventId
+	}
+	return 0
+}
+
+func (x *AsyncEvent) GetRoomId() string {
+	if x != nil {
+		return x.RoomId
+	}
+	return ""
+}
+
+func (x *AsyncEvent) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *AsyncEvent) GetBroadcast() bool {
+	if x != nil {
+		return x.Broadcast
+	}
+	return false
+}
+
+func (x *AsyncEvent) GetTargets() []int64 {
+	if x != nil {
+		return x.Targets
+	}
+	return nil
+}
+
+func (x *AsyncEvent) GetPayload() []byte {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+func (x *AsyncEvent) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
 var File_engine_engine_proto protoreflect.FileDescriptor
 
 const file_engine_engine_proto_rawDesc = "" +
@@ -809,10 +937,23 @@ const file_engine_engine_proto_rawDesc = "" +
 	"\bUsername\x18\b \x01(\tR\bUsername\x12\"\n" +
 	"\fLanguagecode\x18\t \x01(\tR\fLanguagecode\x12\x1a\n" +
 	"\bPhotourl\x18\n" +
-	" \x01(\tR\bPhotourl2\x8c\x01\n" +
+	" \x01(\tR\bPhotourl\"\x18\n" +
+	"\x16SubscribeEventsRequest\"\xd0\x01\n" +
+	"\n" +
+	"AsyncEvent\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\x04R\aeventId\x12\x17\n" +
+	"\aroom_id\x18\x02 \x01(\tR\x06roomId\x12\x1d\n" +
+	"\n" +
+	"event_type\x18\x03 \x01(\tR\teventType\x12\x1c\n" +
+	"\tbroadcast\x18\x04 \x01(\bR\tbroadcast\x12\x18\n" +
+	"\atargets\x18\x05 \x03(\x03R\atargets\x12\x18\n" +
+	"\apayload\x18\x06 \x01(\fR\apayload\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\a \x01(\x03R\tcreatedAt2\xd5\x01\n" +
 	"\x06Engine\x12@\n" +
 	"\tWedSocket\x12\x18.engine.WedSocketRequest\x1a\x19.engine.WedSocketResponse\x12@\n" +
-	"\tLobbyList\x12\x18.engine.LobbyListRequest\x1a\x19.engine.LobbyListResponseB\x1aZ\x18sirius.engine.v1;engine1b\x06proto3"
+	"\tLobbyList\x12\x18.engine.LobbyListRequest\x1a\x19.engine.LobbyListResponse\x12G\n" +
+	"\x0fSubscribeEvents\x12\x1e.engine.SubscribeEventsRequest\x1a\x12.engine.AsyncEvent0\x01B\x1aZ\x18sirius.engine.v1;engine1b\x06proto3"
 
 var (
 	file_engine_engine_proto_rawDescOnce sync.Once
@@ -826,35 +967,39 @@ func file_engine_engine_proto_rawDescGZIP() []byte {
 	return file_engine_engine_proto_rawDescData
 }
 
-var file_engine_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_engine_engine_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_engine_engine_proto_goTypes = []any{
-	(*WedSocketRequest)(nil),  // 0: engine.WedSocketRequest
-	(*WedSocketResponse)(nil), // 1: engine.WedSocketResponse
-	(*LobbyListRequest)(nil),  // 2: engine.LobbyListRequest
-	(*SearchMod)(nil),         // 3: engine.SearchMod
-	(*SearchParms)(nil),       // 4: engine.SearchParms
-	(*LobbyListResponse)(nil), // 5: engine.LobbyListResponse
-	(*Room)(nil),              // 6: engine.Room
-	(*Mod)(nil),               // 7: engine.Mod
-	(*User)(nil),              // 8: engine.User
+	(*WedSocketRequest)(nil),       // 0: engine.WedSocketRequest
+	(*WedSocketResponse)(nil),      // 1: engine.WedSocketResponse
+	(*LobbyListRequest)(nil),       // 2: engine.LobbyListRequest
+	(*SearchMod)(nil),              // 3: engine.SearchMod
+	(*SearchParms)(nil),            // 4: engine.SearchParms
+	(*LobbyListResponse)(nil),      // 5: engine.LobbyListResponse
+	(*Room)(nil),                   // 6: engine.Room
+	(*Mod)(nil),                    // 7: engine.Mod
+	(*User)(nil),                   // 8: engine.User
+	(*SubscribeEventsRequest)(nil), // 9: engine.SubscribeEventsRequest
+	(*AsyncEvent)(nil),             // 10: engine.AsyncEvent
 }
 var file_engine_engine_proto_depIdxs = []int32{
-	8, // 0: engine.WedSocketRequest.User:type_name -> engine.User
-	6, // 1: engine.WedSocketResponse.Room:type_name -> engine.Room
-	3, // 2: engine.LobbyListRequest.SearchMod:type_name -> engine.SearchMod
-	4, // 3: engine.LobbyListRequest.ParmsMod:type_name -> engine.SearchParms
-	6, // 4: engine.LobbyListResponse.Rooms:type_name -> engine.Room
-	7, // 5: engine.Room.Mod:type_name -> engine.Mod
-	8, // 6: engine.Room.Userslist:type_name -> engine.User
-	0, // 7: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
-	2, // 8: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
-	1, // 9: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
-	5, // 10: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
-	9, // [9:11] is the sub-list for method output_type
-	7, // [7:9] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	8,  // 0: engine.WedSocketRequest.User:type_name -> engine.User
+	6,  // 1: engine.WedSocketResponse.Room:type_name -> engine.Room
+	3,  // 2: engine.LobbyListRequest.SearchMod:type_name -> engine.SearchMod
+	4,  // 3: engine.LobbyListRequest.ParmsMod:type_name -> engine.SearchParms
+	6,  // 4: engine.LobbyListResponse.Rooms:type_name -> engine.Room
+	7,  // 5: engine.Room.Mod:type_name -> engine.Mod
+	8,  // 6: engine.Room.Userslist:type_name -> engine.User
+	0,  // 7: engine.Engine.WedSocket:input_type -> engine.WedSocketRequest
+	2,  // 8: engine.Engine.LobbyList:input_type -> engine.LobbyListRequest
+	9,  // 9: engine.Engine.SubscribeEvents:input_type -> engine.SubscribeEventsRequest
+	1,  // 10: engine.Engine.WedSocket:output_type -> engine.WedSocketResponse
+	5,  // 11: engine.Engine.LobbyList:output_type -> engine.LobbyListResponse
+	10, // 12: engine.Engine.SubscribeEvents:output_type -> engine.AsyncEvent
+	10, // [10:13] is the sub-list for method output_type
+	7,  // [7:10] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_engine_engine_proto_init() }
@@ -868,7 +1013,7 @@ func file_engine_engine_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_engine_engine_proto_rawDesc), len(file_engine_engine_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
